@@ -1,0 +1,70 @@
+[versions]
+agp = "8.5.2"
+kotlin = "2.0.0"
+coreKtx = "1.13.1"
+junit = "4.13.2"
+junitVersion = "1.2.1"
+espressoCore = "3.6.1"
+appcompat = "1.7.0"
+material = "1.12.0"
+activity = "1.9.1"
+fragment="1.8.2"
+constraintlayout = "2.1.4"
+lifecycle ="2.8.4"
+hilt = "2.48"
+navigation="2.7.7"
+ksp="2.0.0-1.0.22"
+retrofit="2.9.0"
+intercepter="5.0.0-alpha.2"
+sdp="1.1.0"
+glide ="4.15.1"
+firebase ="33.1.2"
+googleSerives= "4.4.2"
+firebaseCommonKtx = "21.0.0"
+firebaseAuthKtx = "23.0.0"
+playSrviceAuth="21.2.0"
+credentials ="1.5.0-alpha04"
+googleid = "1.1.1"
+
+
+[libraries]
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
+androidx-activity-ktx = { group = "androidx.activity", name = "activity-ktx", version.ref = "activity" }
+androidx-fragment-ktx = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "fragment" }
+androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
+lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycle" }
+lifecycle-viewmodal-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
+lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle" }
+navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigation" }
+navigation-ui-ktx= { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigation" }
+hilt-compiler= { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
+retrofit= { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+retrofit-converter-gson= { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
+retrofit-logging-intercepter= { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "intercepter" }
+sdp-android= { group = "com.intuit.sdp", name = "sdp-android", version.ref = "sdp" }
+ssp-android= { group = "com.intuit.ssp", name = "ssp-android", version.ref = "sdp" }
+glide= { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
+firebase= { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebase" }
+firebase-common-ktx = { group = "com.google.firebase", name = "firebase-common-ktx", version.ref = "firebaseCommonKtx" }
+firebase-auth-ktx = { group = "com.google.firebase", name = "firebase-auth-ktx", version.ref = "firebaseAuthKtx" }
+firebase-analytics-ktx = { group = "com.google.firebase", name = "firebase-analytics-ktx", version.ref = "firebaseAuthKtx" }
+play-services-auth = { group = "com.google.android.gms", name = "play-services-auth", version.ref = "playSrviceAuth" }
+credentials-play-services-auth = { group = "androidx.credentials", name = "credentials-play-services-auth", version.ref = "credentials" }
+googleid = { group = "com.google.android.libraries.identity.googleid", name = "googleid", version.ref = "googleid" }
+
+
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+googleServices = { id = "com.google.gms.google-services", version.ref = "googleSerives" }
+

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+
+    <color name="black">#FF000000</color>
+    <color name="app_black">#2A2A37</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="color_ebebeb">#EDECEB</color>
+    <color name="button_orange">#FBB45F</color>
+    <color name="blue">#006EAB</color>
+    <color name="color_52C0FF">#52C0FF</color>
+    <color name="color_724FDA">#724FDA</color>
+    <color name="color_D9D9D9">#D9D9D9</color>
+    <color name="color_F5F9FA">#F5F9FA</color>
+    <color name="color_9FA7AD">#9FA7AD</color>
+    <color name="color_716D78">#716D78</color>
+    <color name="color_CDCDCD">#CDCDCD</color>
+    <color name="color_D8D6D5">#D8D6D5</color>
+    <color name="color_A181FE">#A181FE</color>
+    <color name="color_F9F9F9">#F9F9F9</color>
+
+    <color name="colorPrimary">#241332</color>
+    <color name="colorPrimaryDark">#283845</color>
+    <color name="colorAccent">#283845</color>
+    <color name="purple">#8A56AC</color>
+    <color name="purple_dark">#352641</color>
+    <color name="purple_light">#A7A0AD</color>
+    <color name="light_black">#61536C</color>
+    <color name="purple_shade">#30213E</color>
+    <color name="gray">#757575</color>
+    <color name="darkest_purple">#241332</color>
+    <color name="off_black">#66000000</color>
+    <color name="background_color">#f8f8f8</color>
+    <color name="off_white">#EEEAEA</color>
+    <color name="trans_white">#66FFFFFF</color>
+    <color name="text_color">#283845</color>
+    <color name="drwable_image">#A9AFB4</color>
+    <color name="light_gray">#E9EAEC</color>
+    <color name="dark_gray">#8C8B8B</color>
+    <color name="text_color_light">#283845</color>
+    <color name="percentage_color">#46B25C</color>
+    <color name="transparent">@android:color/transparent</color>
+    <color name="orange">#ff431e</color>
+    <color name="error_color">#EC536E</color>
+    <color name="dark_green">#0B5960</color>
+    <color name="green">#59CF1F</color>
+    <color name="border_color">#b2b2b2</color>
+    <color name="like_green">#46B25C</color>
+    <color name="red">#D81207</color>
+    <color name="background">#eeeff0</color>
+    <color name="inactive_dot_color">#555869</color>
+    <color name="pink">#D47FA6</color>
+    <color name="yellow">#FFB900</color>
+</resources>

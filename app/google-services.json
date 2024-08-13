@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "506432242412",
+    "project_id": "avasarpay",
+    "storage_bucket": "avasarpay.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:506432242412:android:6659b2b7ecae214961dbc9",
+        "android_client_info": {
+          "package_name": "com.itcc.avasarpay"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "506432242412-6k47p877pcenu5c0qgr3ksd70lc5c921.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.itcc.avasarpay",
+            "certificate_hash": "7bd935ad51a87e7b8286f58211f6eea472291aa2"
+          }
+        },
+        {
+          "client_id": "506432242412-62m8uvcvfmggcj4omkj48q6fvq10f9bb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoHpno0tmzaqeuhz0X_VJnCj9FBmyugzA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "506432242412-62m8uvcvfmggcj4omkj48q6fvq10f9bb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
