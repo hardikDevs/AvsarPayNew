@@ -2,6 +2,7 @@ package com.itcc.avasarpay.ui.auth
 
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 
 import android.os.Bundle
 import android.util.Log
@@ -23,6 +24,7 @@ import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
 import com.google.android.libraries.identity.googleid.GoogleIdTokenParsingException
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
+import com.itcc.avasarpay.BuildConfig
 import com.itcc.avasarpay.R
 
 import com.itcc.avasarpay.base.BaseActivity
@@ -51,6 +53,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
     lateinit var mGoogleSignInClient: GoogleSignInClient
     val Req_Code: Int = 123
     private lateinit var firebaseAuth: FirebaseAuth
+
     companion object {
 
         private const val EXTRAS_TITLE = "EXTRAS_TITLE"
@@ -58,6 +61,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
         fun getStartIntent(context: Context): Intent {
             return Intent(context, LoginActivity::class.java)
         }
+
         fun getStartIntent(context: Context, country: String): Intent {
             return Intent(context, LoginActivity::class.java)
                 .apply {
@@ -87,7 +91,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                     when (it) {
                         is UiState.Success -> {
                             hideProgressbar()
-                           // session.user = it.data.item
+                             session.user = it.data.item
                             session.isLoggedIn = true
                             startActivity(HomeActivity.getStartIntent(this@LoginActivity, "test"))
                             finish()
@@ -109,7 +113,6 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                 }
             }
         }
-
 
 
     }
@@ -145,13 +148,13 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
     }
 
 
-    private fun googleLogin(){
+    private fun googleLogin() {
         val googleIdOption: GetGoogleIdOption = GetGoogleIdOption.Builder()
             .setFilterByAuthorizedAccounts(true)
             .setServerClientId(getString(R.string.web_client_id))
             .setAutoSelectEnabled(true)
             .setNonce(null)
-        .build()
+            .build()
 
         val getCredRequest: GetCredentialRequest = GetCredentialRequest.Builder()
             .addCredentialOption(googleIdOption)
@@ -161,27 +164,28 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
         val credentialManager = CredentialManager.create(this)
 
         lifecycleScope.launch {
-           // try {
-                val result = credentialManager.getCredential(
-                    // Use an activity-based context to avoid undefined system UI
-                    // launching behavior.
-                    context = this@LoginActivity,
-                    request = getCredRequest
-                )
-                handleSignIn(result)
-          /*  } catch (e : GetCredentialException) {
-                Log.e("error", "Unexpected type of credential")
-            }*/
+            // try {
+            val result = credentialManager.getCredential(
+                // Use an activity-based context to avoid undefined system UI
+                // launching behavior.
+                context = this@LoginActivity,
+                request = getCredRequest
+            )
+            handleSignIn(result)
+            /*  } catch (e : GetCredentialException) {
+                  Log.e("error", "Unexpected type of credential")
+              }*/
         }
     }
+
     fun handleSignIn(result: GetCredentialResponse) {
         // Handle the successfully returned credential.
         val credential = result.credential
         Logger.i(credential.data.toString())
-     //   val credential2 = GoogleAuthProvider.getCredential(result.idToken, null)
-      /*  firebaseAuth.signInWithCredential(credential).addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-               *//* Log.e(TAG, account.email.toString())
+        //   val credential2 = GoogleAuthProvider.getCredential(result.idToken, null)
+        /*  firebaseAuth.signInWithCredential(credential).addOnCompleteListener { task ->
+              if (task.isSuccessful) {
+                 *//* Log.e(TAG, account.email.toString())
                 AppLog.e(TAG, account.displayName.toString())*//*
                 *//*SavedPreference.setEmail(this, account.email.toString())
                 SavedPreference.setUsername(this, account.displayName.toString())
@@ -196,7 +200,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
             is PublicKeyCredential -> {
                 // Share responseJson such as a GetCredentialResponse on your server to
                 // validate and authenticate
-              val  responseJson = credential.authenticationResponseJson
+                val responseJson = credential.authenticationResponseJson
                 Logger.e(responseJson)
             }
 
@@ -221,11 +225,11 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                         // purposes, but don't use them to store or control access to user
                         // data. For that you first need to validate the token:
                         // pass googleIdTokenCredential.getIdToken() to the backend server.
-                       /* GoogleIdTokenVerifier verifier = ... // see validation instructions
-                        GoogleIdToken idToken = verifier.verify(idTokenString);
-                        // To get a stable account identifier (e.g. for storing user data),
-                        // use the subject ID:
-                        idToken.getPayload().getSubject()*/
+                        /* GoogleIdTokenVerifier verifier = ... // see validation instructions
+                         GoogleIdToken idToken = verifier.verify(idTokenString);
+                         // To get a stable account identifier (e.g. for storing user data),
+                         // use the subject ID:
+                         idToken.getPayload().getSubject()*/
                     } catch (e: GoogleIdTokenParsingException) {
                         Log.e("error", "Received an invalid google id token response", e)
                     }
@@ -241,18 +245,24 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
             }
         }
     }
-    private fun loginApiCall(){
+
+    private fun loginApiCall() {
+        val osVersion = Build.VERSION.RELEASE
+        val applicationVersion = BuildConfig.VERSION_CODE.toString()
         loginViewModal.login(
             binding.email.getValue(),
             binding.password.getValue(),
-            "test"
+            "Custom",
+            "android",
+            osVersion,
+            applicationVersion
         )
     }
 
     /**
      * Check Input Validation
      **/
-    private fun validation() : Boolean {
+    private fun validation(): Boolean {
         when {
             binding.email.text.toString().isEmpty() -> {
                 binding.emailMain.error = "Please enter email address"
@@ -268,10 +278,12 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                 binding.password.error = "Please enter password"
                 return false
             }
+
             binding.password.text.toString().length < 6 -> {
                 binding.password.error = "The password must be at least 6 characters."
                 return false
             }
+
             else -> {
                 return true
             }

@@ -79,6 +79,8 @@ dependencies {
     implementation(libs.play.services.auth)
     implementation(libs.credentials.play.services.auth)
 
+    implementation(libs.circle.imagview)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

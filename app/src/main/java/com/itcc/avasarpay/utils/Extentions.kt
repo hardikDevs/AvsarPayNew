@@ -44,6 +44,7 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import java.time.LocalDateTime
 import java.time.temporal.ChronoUnit
 import java.util.Calendar
+import java.util.regex.Pattern
 
 
 fun View.visible() {
@@ -263,6 +264,17 @@ fun convertIntoTowDigit(value: Int): String {
     }
 
     return finalValue
+}
+fun isValidPasswordFormat(password: String): Boolean {
+    val passwordREGEX = Pattern.compile("^" +
+            "(?=.*[0-9])" +         //at least 1 digit
+            "(?=.*[a-z])" +         //at least 1 lower case letter
+            "(?=.*[A-Z])" +         //at least 1 upper case letter
+            "(?=.*[@#$%^&+=])" +    //at least 1 special character
+            "(?=\\S+$)" +           //no white spaces
+            ".{8,}" +               //at least 8 characters
+            "$");
+    return passwordREGEX.matcher(password).matches()
 }
 
 fun isValidEmail(target: CharSequence): Boolean {

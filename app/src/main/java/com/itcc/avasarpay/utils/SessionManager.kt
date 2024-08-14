@@ -1,10 +1,11 @@
 package com.itcc.stonna.utils
 
+
 import android.app.NotificationManager
 import android.content.Context
+import com.google.gson.Gson
 import com.itcc.avasarpay.R
-
-
+import com.itcc.avasarpay.data.modal.User
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
@@ -20,7 +21,7 @@ class SessionManager@Inject constructor(
         set(isLoggedIn) = storeDataByKey(KEY_IS_LOGIN, isLoggedIn)
 
 
-   /* var user: User
+    var user: User
         get() {
             val gson = Gson()
             val json = getDataByKey(KEY_USER_INFO, "")
@@ -31,7 +32,7 @@ class SessionManager@Inject constructor(
             val json = gson.toJson(user)
             pref.edit().putString(KEY_USER_INFO, json).apply()
             isLoggedIn = true
-        }*/
+        }
 
 
 
