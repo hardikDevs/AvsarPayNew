@@ -10,6 +10,8 @@ import com.itcc.avasarpay.R
 
 import com.itcc.avasarpay.base.BaseActivity
 import com.itcc.avasarpay.databinding.SplashScreenBinding
+import com.itcc.avasarpay.ui.auth.LoginActivity
+import com.itcc.avasarpay.ui.home.DashboardActivity
 
 
 import dagger.hilt.android.AndroidEntryPoint
@@ -49,11 +51,12 @@ class SplashScreens : BaseActivity() {
          }*/
         Handler(Looper.getMainLooper()).postDelayed({
 
-            /*if (session.isLoggedIn)
-                startActivity(HomeActivity.getStartIntent(this, "test"))
+            if (session.isLoggedIn)
+                startActivity(DashboardActivity.getStartIntent(this, "test"))
             else{
                 startActivity(LoginActivity.getStartIntent(this, "test"))
-            }*/
+            }
+
             finish()
 
             }, SPLASH_DISPLAY_LENGTH)

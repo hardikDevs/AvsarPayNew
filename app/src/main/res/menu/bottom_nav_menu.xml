@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+    <item
+        android:id="@+id/navigation_dashboard"
+        android:icon="@drawable/ic_home_white"
+        android:title="@string/title_dashboard" />
+    <item
+        android:id="@+id/navigation_event"
+        android:icon="@drawable/ic_event_grey"
+        android:title="@string/title_event" />
+    <item
+        android:id="@+id/navigation_guests"
+        android:icon="@drawable/ic_guest_grey"
+        android:title="@string/title_guests" />
+
+    <item
+        android:id="@+id/navigation_account"
+        android:icon="@drawable/ic_account_gry"
+        android:title="@string/title_account" />
+
+</menu>

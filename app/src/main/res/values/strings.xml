@@ -7,4 +7,9 @@
     <string name="fb_app_id">262729336355051</string>
     <string name="fb_login_protocol_scheme">fb262729336355051</string>
     <string name="fb_app_secret">b3c3114a5d65d89bf7c55421508c8f25</string>
+    <string name="title_activity_dashboard">DashboardActivity</string>
+    <string name="title_event">Event</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_guests">Guests</string>
+    <string name="title_account">Account</string>
 </resources>

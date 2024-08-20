@@ -5,7 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import androidx.core.content.ContextCompat
-import com.itcc.avasarpay.ui.MainActivity
+import com.itcc.avasarpay.ui.home.DashboardActivity
 import com.itcc.stonna.utils.Logger
 import com.itcc.stonna.utils.SessionManager
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -40,7 +40,7 @@ class SessionInterceptor @Inject constructor(@ApplicationContext context: Contex
         if (response.code == 401) {
             Logger.e("Session Expired : Endpoint", response.request.url.encodedPath)
 
-            val intent = Intent(context, MainActivity::class.java)
+            val intent = Intent(context, DashboardActivity::class.java)
             try {
                 val jsonObject = response.body?.string()?.let { JSONObject(it) }
                 val msg = jsonObject?.optString("msg")

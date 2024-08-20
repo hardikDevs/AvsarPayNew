@@ -30,8 +30,8 @@ import com.itcc.avasarpay.R
 import com.itcc.avasarpay.base.BaseActivity
 import com.itcc.avasarpay.base.UiState
 import com.itcc.avasarpay.databinding.ActivityLoginBinding
+import com.itcc.avasarpay.ui.home.DashboardActivity
 
-import com.itcc.avasarpay.ui.home.HomeActivity
 import com.itcc.avasarpay.utils.Util.preventMultipleClicks
 import com.itcc.avasarpay.utils.Util.setOnClickListener
 import com.itcc.stonna.utils.Logger
@@ -93,7 +93,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                             hideProgressbar()
                              session.user = it.data.item
                             session.isLoggedIn = true
-                            startActivity(HomeActivity.getStartIntent(this@LoginActivity, "test"))
+                            startActivity(DashboardActivity.getStartIntent(this@LoginActivity, "test"))
                             finish()
 
                         }

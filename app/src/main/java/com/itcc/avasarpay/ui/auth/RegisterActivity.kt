@@ -19,7 +19,7 @@ import com.itcc.avasarpay.base.UiState
 import com.itcc.avasarpay.data.modal.RegisterReq
 import com.itcc.avasarpay.databinding.ActivityLoginBinding
 import com.itcc.avasarpay.databinding.ActivityRegisterBinding
-import com.itcc.avasarpay.ui.home.HomeActivity
+import com.itcc.avasarpay.ui.home.DashboardActivity
 import com.itcc.avasarpay.utils.Util.preventMultipleClicks
 import com.itcc.avasarpay.utils.Util.setOnClickListener
 import com.itcc.stonna.utils.getValue
@@ -164,7 +164,7 @@ class RegisterActivity : BaseActivity(), View.OnClickListener {
                             session.isLoggedIn = true
                             session.user = it.data.item
                             startActivity(
-                                HomeActivity.getStartIntent(
+                                DashboardActivity.getStartIntent(
                                     this@RegisterActivity,
                                     "test"
                                 )
