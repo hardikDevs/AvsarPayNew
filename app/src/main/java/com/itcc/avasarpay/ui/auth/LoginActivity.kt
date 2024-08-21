@@ -91,7 +91,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                     when (it) {
                         is UiState.Success -> {
                             hideProgressbar()
-                             session.user = it.data.item
+                             session.user = it.data
                             session.isLoggedIn = true
                             startActivity(DashboardActivity.getStartIntent(this@LoginActivity, "test"))
                             finish()

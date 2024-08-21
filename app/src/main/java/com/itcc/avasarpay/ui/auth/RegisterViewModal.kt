@@ -29,9 +29,9 @@ class RegisterViewModal @Inject constructor(
     private val dispatcherProvider: DispatcherProvider
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow<UiState<RegisterRes>>(UiState.Idle)
+    private val _uiState = MutableStateFlow<UiState<LoginModal>>(UiState.Idle)
 
-    val uiState: StateFlow<UiState<RegisterRes>> = _uiState
+    val uiState: StateFlow<UiState<LoginModal>> = _uiState
 
 
     fun register(

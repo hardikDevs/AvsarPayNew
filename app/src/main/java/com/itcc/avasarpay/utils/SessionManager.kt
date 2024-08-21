@@ -5,6 +5,7 @@ import android.app.NotificationManager
 import android.content.Context
 import com.google.gson.Gson
 import com.itcc.avasarpay.R
+import com.itcc.avasarpay.data.modal.LoginModal
 import com.itcc.avasarpay.data.modal.User
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
@@ -21,11 +22,11 @@ class SessionManager@Inject constructor(
         set(isLoggedIn) = storeDataByKey(KEY_IS_LOGIN, isLoggedIn)
 
 
-    var user: User
+    var user: LoginModal
         get() {
             val gson = Gson()
             val json = getDataByKey(KEY_USER_INFO, "")
-            return gson.fromJson(json, User::class.java)
+            return gson.fromJson(json, LoginModal::class.java)
         }
         set(user) {
             val gson = Gson()
