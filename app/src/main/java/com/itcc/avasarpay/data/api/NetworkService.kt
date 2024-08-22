@@ -1,6 +1,7 @@
 package com.itcc.avasarpay.data.api
 
 
+import com.itcc.avasarpay.data.modal.AddContactRes
 import com.itcc.avasarpay.data.modal.CateListRes
 import com.itcc.avasarpay.data.modal.LoginModal
 import com.itcc.avasarpay.data.modal.RegisterReq
@@ -23,4 +24,7 @@ interface NetworkService {
 
     @GET("categories")
     suspend fun getCategoryList(): Response<CateListRes>
+
+    @GET("contacts")
+    fun getGuestList():Response<AddContactRes>
 }
