@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -15,7 +16,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.itcc.avasarpay.base.BaseFragment
 import com.itcc.avasarpay.base.UiState
 import com.itcc.avasarpay.data.modal.CateListData
+import com.itcc.avasarpay.data.modal.ContactData
+import com.itcc.avasarpay.data.modal.GuestItem
 import com.itcc.avasarpay.databinding.FragmentDashboardBinding
+import com.itcc.avasarpay.databinding.FragmentGuestBinding
 import com.itcc.avasarpay.ui.home.ui.dashboard.CategoryAdapter
 import com.itcc.avasarpay.ui.home.ui.dashboard.DashboardViewModel
 import com.itcc.stonna.utils.showSnackBar
@@ -26,8 +30,9 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class AllGuestFragment : BaseFragment() {
 
-    private var _binding: FragmentDashboardBinding? = null
+    private var _binding: FragmentGuestBinding? = null
     private val guestsViewModel: GuestViewModel by viewModels()
+    private lateinit var adapter: AllGuestAdapter
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -53,7 +58,7 @@ class AllGuestFragment : BaseFragment() {
     ): View {
 
 
-        _binding = FragmentDashboardBinding.inflate(inflater, container, false)
+        _binding = FragmentGuestBinding.inflate(inflater, container, false)
         val root: View = binding.root
         return root
     }
@@ -64,6 +69,23 @@ class AllGuestFragment : BaseFragment() {
         setupObserver()
     }
 
+    private fun searchContact(){
+        binding.contactSearch.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+
+                adapter.filter.filter(query)
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+
+                adapter.filter.filter(newText)
+
+                return true
+            }
+
+        })
+    }
 
     /**
      * Get Flow Event
@@ -75,7 +97,7 @@ class AllGuestFragment : BaseFragment() {
                     when (it) {
                         is UiState.Success -> {
                             hideProgressbar()
-                           // setupCategoryAdapter(it.data.item)
+                            setupGuestAdapter(it.data.item)
                         }
 
                         is UiState.Loading -> {
@@ -95,14 +117,15 @@ class AllGuestFragment : BaseFragment() {
         }
     }
 
-    private fun setupCategoryAdapter(jobListItems: ArrayList<CateListData>) {
-        val adapter = CategoryAdapter(jobListItems)
-        val recyclerView = binding.rvCocktail
+    private fun setupGuestAdapter(jobListItems: MutableList<GuestItem>) {
+         adapter = AllGuestAdapter(jobListItems)
+        val recyclerView = binding.contactList
         recyclerView.adapter = adapter
 
         adapter.itemClickListener = {
             //  startActivity(JobDetailsActivity.getStartIntent(requireContext(), it.id!!))
         }
+        searchContact()
     }
 
     override fun onDestroyView() {

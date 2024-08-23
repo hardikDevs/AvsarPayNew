@@ -8,6 +8,7 @@ import com.itcc.avasarpay.base.UiState
 import com.itcc.avasarpay.data.modal.AddContactRes
 import com.itcc.avasarpay.data.modal.BaseModal
 import com.itcc.avasarpay.data.modal.CateListRes
+import com.itcc.avasarpay.data.modal.GuestModal
 import com.itcc.avasarpay.data.repository.CategoryRepository
 import com.itcc.avasarpay.data.repository.GuestRepository
 import com.itcc.avasarpay.utils.DispatcherProvider
@@ -25,8 +26,8 @@ class GuestViewModel @Inject constructor(
     private val dispatcherProvider: DispatcherProvider
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow<UiState<AddContactRes>>(UiState.Idle)
-    val uiState: StateFlow<UiState<AddContactRes>> = _uiState
+    private val _uiState = MutableStateFlow<UiState<GuestModal>>(UiState.Idle)
+    val uiState: StateFlow<UiState<GuestModal>> = _uiState
 
 
     fun getGuestList() {

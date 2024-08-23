@@ -5,6 +5,7 @@ import com.itcc.avasarpay.data.api.NetworkService
 import com.itcc.avasarpay.data.api.SafeApiRequest
 import com.itcc.avasarpay.data.modal.AddContactRes
 import com.itcc.avasarpay.data.modal.CateListRes
+import com.itcc.avasarpay.data.modal.GuestModal
 import com.itcc.avasarpay.data.modal.LoginModal
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -17,7 +18,7 @@ import javax.inject.Singleton
 class GuestRepository @Inject constructor(private val networkService: NetworkService) :
     SafeApiRequest() {
 
-    suspend fun getGuestList(): Flow<AddContactRes> {
+    suspend fun getGuestList(): Flow<GuestModal> {
         return flow {
             emit(apiRequest { networkService.getGuestList() })
         }
