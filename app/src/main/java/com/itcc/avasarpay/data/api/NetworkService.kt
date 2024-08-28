@@ -27,5 +27,5 @@ interface NetworkService {
     suspend fun getCategoryList(): Response<CateListRes>
 
     @GET("contacts")
-    fun getGuestList():Response<GuestModal>
+     suspend fun getGuestList():Response<GuestModal>
 }
