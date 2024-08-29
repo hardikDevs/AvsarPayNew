@@ -29,6 +29,9 @@
             android:name=".ui.home.ui.account.ProfileActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.home.ui.event.CreateEventActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.SplashScreens"
             android:exported="true">
             <intent-filter>
