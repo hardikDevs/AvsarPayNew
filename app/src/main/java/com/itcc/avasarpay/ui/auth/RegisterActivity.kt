@@ -2,61 +2,84 @@ package com.itcc.avasarpay.ui.auth
 
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.itcc.avasarpay.BuildConfig
-import com.itcc.avasarpay.R
+import com.bumptech.glide.Glide
 import com.itcc.avasarpay.base.BaseActivity
 import com.itcc.avasarpay.base.UiState
-import com.itcc.avasarpay.data.modal.RegisterReq
-import com.itcc.avasarpay.databinding.ActivityLoginBinding
 import com.itcc.avasarpay.databinding.ActivityRegisterBinding
 import com.itcc.avasarpay.ui.home.DashboardActivity
+import com.itcc.avasarpay.utils.FileHelper
 import com.itcc.avasarpay.utils.Util.preventMultipleClicks
 import com.itcc.avasarpay.utils.Util.setOnClickListener
 import com.itcc.stonna.utils.getValue
 import com.itcc.stonna.utils.isValidEmail
-import com.itcc.stonna.utils.isValidPasswordFormat
 import com.itcc.stonna.utils.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+
 
 @AndroidEntryPoint
 class RegisterActivity : BaseActivity(), View.OnClickListener {
 
     private lateinit var binding: ActivityRegisterBinding
-    private val registerViewModal: RegisterViewModal by viewModels()
+    private val profileViewModal: ProfileViewModal by viewModels()
+    private var filename = ""
+    private var path = ""
 
     companion object {
 
-        private const val EXTRAS_TITLE = "EXTRAS_TITLE"
+        private const val EXTRAS_EMAIl = "EXTRAS_EMAIL"
 
         fun getStartIntent(context: Context, country: String): Intent {
             return Intent(context, RegisterActivity::class.java)
                 .apply {
-                    putExtra(EXTRAS_TITLE, country)
+                    putExtra(EXTRAS_EMAIl, country)
                 }
         }
 
     }
+
+    var launcher: ActivityResultLauncher<PickVisualMediaRequest> =
+        registerForActivityResult(
+            ActivityResultContracts.PickVisualMedia()
+        ) {
+
+            if (it != null) {
+                // val mimeType = it.getMimeType(this)
+                path = FileHelper.getRealPathFromURI(this, it)
+                filename = path.substring(path.lastIndexOf("/") + 1)
+                Glide.with(this).load(it).into(binding.img)
+            }
+
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        getIntentAndFetchData()
 
 
         setupObserver()
         addClickListener()
+    }
+
+    private fun getIntentAndFetchData() {
+        val email = intent.getStringExtra(EXTRAS_EMAIl)
+        email?.let {
+
+            binding.email.setText(email)
+        }
     }
 
     /**
@@ -66,8 +89,7 @@ class RegisterActivity : BaseActivity(), View.OnClickListener {
         setOnClickListener(
             this,
             binding.button,
-            binding.facebook,
-            binding.google
+            binding.img
         )
     }
 
@@ -81,6 +103,11 @@ class RegisterActivity : BaseActivity(), View.OnClickListener {
         }
         when (view) {
             binding.button -> if (isValidRegister()) registerApiCall()
+            binding.img -> {
+                launcher.launch(
+                    PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)
+                )
+            }
             /*   binding.facebook -> googleLogin()
                binding.google -> googleLogin()*/
 
@@ -108,47 +135,24 @@ class RegisterActivity : BaseActivity(), View.OnClickListener {
             return false
         }
 
-        if (binding.password.text.toString().isEmpty()) {
-            binding.passwordMain.error = "Please enter password"
-            return false
-        }
-        if (isValidPasswordFormat(binding.password.toString())) {
-            binding.passwordMain.error =
-                "Use 8 or more characters with a mix of letters, numbers and symbols."
-            binding.passwordReq.visibility = View.GONE
-            return false
-        }
-        if (binding.confpassword.text.toString().isEmpty()) {
-            binding.conpasswordMain.error = "Please enter confirm password"
-            binding.passwordReq.visibility = View.VISIBLE
-            return false
-        }
 
-        if (!binding.confpassword.text.toString().equals(binding.password.text.toString())) {
-            binding.conpasswordMain.error = "Password and Confirm password must be same."
-            binding.passwordReq.visibility = View.VISIBLE
-            return false
-        }
         return true
     }
 
     private fun registerApiCall() {
-        val osVersion = Build.VERSION.RELEASE
-        val applicationVersion = BuildConfig.VERSION_CODE.toString()
-        val registerReq = RegisterReq()
-        registerReq.email = binding.email.text.toString()
-        registerReq.password = binding.password.text.toString()
-        registerReq.phone = binding.phone.text.toString()
-        registerReq.name = binding.name.text.toString()
-        // registerReq.about = binding.info.text.toString()
-        registerReq.password_confirmation = binding.confpassword.text.toString()
-        registerReq.platform = "android"
-        registerReq.application_version = applicationVersion
-        registerReq.os_version = osVersion
-        registerReq.type = "2" // 0= Gmail,1= Fb , 2 = Custom
-        registerViewModal.register(
-            registerReq
-        )
+
+        val phone = binding.phone.text.toString()
+        val name = binding.name.text.toString()
+
+
+
+        val id = session.user.data?.id
+
+        profileViewModal.updateProfile(id!!, name, phone, path, filename)
+
+        /*  profileViewModal.register(
+              registerReq
+          )*/
     }
 
     /**
@@ -156,8 +160,8 @@ class RegisterActivity : BaseActivity(), View.OnClickListener {
      */
     private fun setupObserver() {
         lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                registerViewModal.uiState.collect {
+
+                profileViewModal.uiState.collect {
                     when (it) {
                         is UiState.Success -> {
                             hideProgressbar()
@@ -187,7 +191,7 @@ class RegisterActivity : BaseActivity(), View.OnClickListener {
                     }
                 }
             }
-        }
+
 
 
     }

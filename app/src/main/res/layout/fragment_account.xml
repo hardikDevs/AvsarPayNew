@@ -213,13 +213,55 @@
 
                 </LinearLayout>
 
+                <View
+                    android:id="@+id/changepwdView"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:layout_below="@id/walletLin"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    android:alpha="0.8"
+                    android:background="@color/color_CDCDCD" />
 
+                <LinearLayout
+                    android:id="@+id/chngpwdLin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/changepwdView"
+                    android:layout_margin="@dimen/_12sdp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_weight="0.15"
+                        android:src="@drawable/ic_password_change" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.7"
+                        android:fontFamily="@font/interregular"
+                        android:text="Change Password"
+                        android:textColor="@color/app_black"
+                        android:textSize="@dimen/_13ssp" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_18sdp"
+                        android:layout_weight="0.1"
+                        android:src="@drawable/arrow_right" />
+
+
+                </LinearLayout>
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/logout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/walletLin"
+                    android:layout_below="@id/chngpwdLin"
                     android:layout_marginStart="@dimen/_20sdp"
                     android:layout_marginTop="@dimen/_30sdp"
                     android:layout_marginEnd="@dimen/_20sdp"

@@ -44,10 +44,10 @@ class AccountFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val user = session.user.item
-        binding.userProfileName.text = user.name.toString()
-        binding.userProfileEmail.text = user.email
-        binding.userProfileNum.text = user.phone
+        val user = session.user.data
+        binding.userProfileName.text = user?.name.toString()
+        binding.userProfileEmail.text = user?.email
+        binding.userProfileNum.text = user?.phone
 
         binding.logout.setOnClickListener {
             logout()

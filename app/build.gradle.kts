@@ -56,6 +56,7 @@ dependencies {
     implementation(libs.firebase.common.ktx)
     implementation(libs.firebase.auth.ktx)
     implementation(libs.googleid)
+    implementation(libs.firebase.messaging.ktx)
     ksp(libs.hilt.compiler)
 
     implementation(libs.androidx.activity.ktx)

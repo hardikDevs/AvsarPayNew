@@ -29,7 +29,7 @@ object NetworkModule {
 
     @BaseUrl
     @Provides
-    fun provideBaseUrl() = "https://dev.itcc.net.au/avasarpay/api/"
+    fun provideBaseUrl() = "https://avasarpay.itcc.net.au/api/"
 
 
     @Provides

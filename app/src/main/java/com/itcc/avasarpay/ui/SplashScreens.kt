@@ -1,5 +1,6 @@
 package com.itcc.avasarpay.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -15,6 +16,18 @@ import com.itcc.avasarpay.ui.home.DashboardActivity
 
 
 import dagger.hilt.android.AndroidEntryPoint
+import android.net.Uri
+import androidx.activity.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import com.itcc.avasarpay.base.UiState
+import com.itcc.avasarpay.ui.auth.LoginViewModal
+import com.itcc.avasarpay.ui.auth.MagicLinkViewModal
+import com.itcc.avasarpay.ui.auth.RegisterActivity
+import com.itcc.stonna.utils.showSnackBar
+import com.itcc.stonna.utils.showToast
+import kotlinx.coroutines.launch
 
 
 /**
@@ -24,6 +37,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class SplashScreens : BaseActivity() {
 
     private lateinit var binding: SplashScreenBinding
+    private val loginViewModal: LoginViewModal by viewModels()
 
     /** Duration of wait  */
     private val SPLASH_DISPLAY_LENGTH = 1000L
@@ -49,19 +63,104 @@ class SplashScreens : BaseActivity() {
                  WindowManager.LayoutParams.FLAG_FULLSCREEN,
                  WindowManager.LayoutParams.FLAG_FULLSCREEN)
          }*/
-        Handler(Looper.getMainLooper()).postDelayed({
 
+        setupObserver()
+        handleIncomingLink()
+
+
+    }
+
+    /**
+     * Get Flow Event
+     */
+    private fun setupObserver() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                loginViewModal.uiState.collect {
+                    when (it) {
+                        is UiState.Success -> {
+                            hideProgressbar()
+                            showToast(it.data.token.toString())
+                            session.user = it.data
+                            session.isLoggedIn = true
+                            if (it.data.data?.name != null) {
+
+                                startActivity(
+                                    DashboardActivity.getStartIntent(
+                                        this@SplashScreens,
+                                        "test"
+                                    )
+                                )
+                            } else
+                                startActivity(
+                                    RegisterActivity.getStartIntent(
+                                        this@SplashScreens,
+                                        it.data.data?.email.toString()
+                                    )
+                                )
+                            finish()
+                        }
+
+                        is UiState.Loading -> {
+                            showProgressbar()
+                        }
+
+                        is UiState.Idle -> {
+                        }
+
+                        is UiState.Error -> {
+                            hideProgressbar()
+                            binding.root.showSnackBar(this@SplashScreens, it.message)
+                        }
+                    }
+                }
+            }
+        }
+
+
+    }
+
+    private fun handleIncomingLink() {
+        if (intent?.action == Intent.ACTION_VIEW) {
+            val uri = intent.data
+            // Parse the URI
+            when {
+                uri?.path?.startsWith("/magic/") == true -> {
+                    val token = uri.lastPathSegment
+                    handleLogin(token)
+                }
+
+                else -> handleRedirection()
+
+                /*  uri?.path?.startsWith("/category/") == true -> {
+                      val categoryId = uri.lastPathSegment
+                      openCategory(categoryId)
+                  }*/
+                // Add more path handlers as needed
+            }
+        }
+
+        if (intent?.action == Intent.ACTION_MAIN) {
+            handleRedirection()
+        }
+    }
+
+    private fun handleRedirection() {
+
+        Handler(Looper.getMainLooper()).postDelayed({
             if (session.isLoggedIn)
                 startActivity(DashboardActivity.getStartIntent(this, "test"))
-            else{
+            else {
                 startActivity(LoginActivity.getStartIntent(this, "test"))
             }
 
             finish()
 
-            }, SPLASH_DISPLAY_LENGTH)
-        }
+        }, SPLASH_DISPLAY_LENGTH)
 
+    }
 
-
+    private fun handleLogin(token: String?) {
+        loginViewModal.login(token.toString())
+    }
 }

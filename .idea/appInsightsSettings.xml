@@ -23,9 +23,9 @@
               <option name="connection">
                 <ConnectionSetting>
                   <option name="appId" value="com.itcc.avasarpay" />
-                  <option name="mobileSdkAppId" value="1:506432242412:android:6659b2b7ecae214961dbc9" />
-                  <option name="projectId" value="avasarpay" />
-                  <option name="projectNumber" value="506432242412" />
+                  <option name="mobileSdkAppId" value="1:654300372825:android:6d8077a86a955fd8097648" />
+                  <option name="projectId" value="avsarpay-e01f5" />
+                  <option name="projectNumber" value="654300372825" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
