@@ -150,6 +150,9 @@ class SplashScreen : BaseActivity() {
         Handler(Looper.getMainLooper()).postDelayed({
             if (session.isLoggedIn && session.user.data?.name!=null)
                 startActivity(DashboardActivity.getStartIntent(this, "test"))
+
+           else if (session.isLoggedIn && session.user.data?.name==null)
+                startActivity(RegisterActivity.getStartIntent(this, session.user.data?.email.toString()))
             else {
                 startActivity(LoginActivity.getStartIntent(this, "test"))
             }

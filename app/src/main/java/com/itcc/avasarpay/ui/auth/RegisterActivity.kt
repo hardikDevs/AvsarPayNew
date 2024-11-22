@@ -89,7 +89,8 @@ class RegisterActivity : BaseActivity(), View.OnClickListener {
         setOnClickListener(
             this,
             binding.button,
-            binding.img
+            binding.img,
+            binding.btnLogout
         )
     }
 
@@ -107,6 +108,15 @@ class RegisterActivity : BaseActivity(), View.OnClickListener {
                 launcher.launch(
                     PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)
                 )
+            }
+            binding.btnLogout -> {
+                session.clearSession()
+                startActivity(
+                    LoginActivity.getStartIntent(
+                        this@RegisterActivity
+                    )
+                )
+                finish()
             }
             /*   binding.facebook -> googleLogin()
                binding.google -> googleLogin()*/

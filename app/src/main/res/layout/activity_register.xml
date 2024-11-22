@@ -163,24 +163,50 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
 
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/button"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/infoMain"
-                    android:layout_marginStart="@dimen/_20sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_marginEnd="@dimen/_20sdp"
-                    android:layout_marginBottom="@dimen/_8sdp"
-                    android:background="@drawable/rounded_btn"
-                    android:backgroundTint="@color/color_724FDA"
-                    android:fontFamily="@font/interbold"
+                    android:orientation="horizontal"
+                    >
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/button"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/infoMain"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_8sdp"
+                        android:background="@drawable/rounded_btn"
+                        android:backgroundTint="@color/color_724FDA"
+                        android:fontFamily="@font/interbold"
 
-                    android:text="Register"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_14ssp" />
+                        android:text="Register"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_14ssp" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnLogout"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/infoMain"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_20sdp"
+                        android:layout_marginBottom="@dimen/_8sdp"
+                        android:background="@drawable/rounded_btn"
+                        android:backgroundTint="@color/color_724FDA"
+                        android:fontFamily="@font/interbold"
+
+                        android:text="Logout"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_14ssp" />
+
+                </LinearLayout>
 
 
 

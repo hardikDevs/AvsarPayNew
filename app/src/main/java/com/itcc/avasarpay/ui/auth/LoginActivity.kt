@@ -114,6 +114,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                     when (it) {
                         is UiState.Success -> {
                             hideProgressbar()
+                            session.isLoggedIn =true
                             showToast(it.data.message.toString())
                         }
 
