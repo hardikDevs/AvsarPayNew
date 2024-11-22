@@ -96,6 +96,7 @@ class SessionManager@Inject constructor(
 
     companion object {
         const val KEY_IS_LOGIN = "isLogin"
+        const val KEY_ACCESS_TOKEN = "access_token"
         const val KEY_IS_REGISTER = "isRegister"
         const val KEY_USER_INFO = "user"
         const val KEY_LOGIN_INFO = "loginInfo"

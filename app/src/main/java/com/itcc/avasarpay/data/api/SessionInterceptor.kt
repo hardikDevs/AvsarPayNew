@@ -29,7 +29,7 @@ class SessionInterceptor @Inject constructor(@ApplicationContext context: Contex
         val builder = original.newBuilder()
         builder.header("Accept", "application/json")
         if (session.isLoggedIn) {
-              var token = session.user.token
+              var token = session.getDataByKey(SessionManager.KEY_ACCESS_TOKEN)
 
 
              Log.d("UserToken", token.toString())

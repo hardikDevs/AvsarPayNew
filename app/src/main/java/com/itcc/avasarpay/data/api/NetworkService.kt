@@ -27,9 +27,6 @@ interface NetworkService {
     @POST("magic-link")
     suspend fun sendMagicLink(@Body body: RequestBody): Response<MagicLinkModal>
 
-    @POST("signup")
-    suspend fun register(@Body registerReq: RegisterReq): Response<LoginModal>
-
     @GET("categories")
     suspend fun getCategoryList(): Response<CateListRes>
 

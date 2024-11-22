@@ -16,15 +16,14 @@ import com.itcc.avasarpay.ui.home.DashboardActivity
 
 
 import dagger.hilt.android.AndroidEntryPoint
-import android.net.Uri
 import androidx.activity.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.itcc.avasarpay.base.UiState
 import com.itcc.avasarpay.ui.auth.LoginViewModal
-import com.itcc.avasarpay.ui.auth.MagicLinkViewModal
 import com.itcc.avasarpay.ui.auth.RegisterActivity
+import com.itcc.stonna.utils.SessionManager
 import com.itcc.stonna.utils.showSnackBar
 import com.itcc.stonna.utils.showToast
 import kotlinx.coroutines.launch
@@ -34,7 +33,7 @@ import kotlinx.coroutines.launch
  *Created By Sunny on 05-03-2024.
  */
 @AndroidEntryPoint
-class SplashScreens : BaseActivity() {
+class SplashScreen : BaseActivity() {
 
     private lateinit var binding: SplashScreenBinding
     private val loginViewModal: LoginViewModal by viewModels()
@@ -82,19 +81,20 @@ class SplashScreens : BaseActivity() {
                             hideProgressbar()
                             showToast(it.data.token.toString())
                             session.user = it.data
+                            session.storeDataByKey(SessionManager.KEY_ACCESS_TOKEN, it.data.token.toString())
                             session.isLoggedIn = true
                             if (it.data.data?.name != null) {
 
                                 startActivity(
                                     DashboardActivity.getStartIntent(
-                                        this@SplashScreens,
+                                        this@SplashScreen,
                                         "test"
                                     )
                                 )
                             } else
                                 startActivity(
                                     RegisterActivity.getStartIntent(
-                                        this@SplashScreens,
+                                        this@SplashScreen,
                                         it.data.data?.email.toString()
                                     )
                                 )
@@ -110,7 +110,7 @@ class SplashScreens : BaseActivity() {
 
                         is UiState.Error -> {
                             hideProgressbar()
-                            binding.root.showSnackBar(this@SplashScreens, it.message)
+                            binding.root.showSnackBar(this@SplashScreen, it.message)
                         }
                     }
                 }
@@ -148,7 +148,7 @@ class SplashScreens : BaseActivity() {
     private fun handleRedirection() {
 
         Handler(Looper.getMainLooper()).postDelayed({
-            if (session.isLoggedIn)
+            if (session.isLoggedIn && session.user.data?.name!=null)
                 startActivity(DashboardActivity.getStartIntent(this, "test"))
             else {
                 startActivity(LoginActivity.getStartIntent(this, "test"))
