@@ -1,12 +1,9 @@
 package com.itcc.avasarpay.ui.home.ui.dashboard
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.itcc.avasarpay.base.UiState
-import com.itcc.avasarpay.data.modal.BaseModal
-import com.itcc.avasarpay.data.modal.CateListRes
+import com.itcc.avasarpay.data.modal.CategoryListModal
 import com.itcc.avasarpay.data.repository.CategoryRepository
 import com.itcc.avasarpay.utils.DispatcherProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -23,8 +20,8 @@ class DashboardViewModel @Inject constructor(
     private val dispatcherProvider: DispatcherProvider
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow<UiState<CateListRes>>(UiState.Idle)
-    val uiState: StateFlow<UiState<CateListRes>> = _uiState
+    private val _uiState = MutableStateFlow<UiState<CategoryListModal>>(UiState.Idle)
+    val uiState: StateFlow<UiState<CategoryListModal>> = _uiState
 
 
     fun getCategoryList() {

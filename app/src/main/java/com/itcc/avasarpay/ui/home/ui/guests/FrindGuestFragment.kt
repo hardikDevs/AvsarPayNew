@@ -4,17 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.itcc.avasarpay.base.BaseFragment
 import com.itcc.avasarpay.base.UiState
-import com.itcc.avasarpay.data.modal.CateListData
+import com.itcc.avasarpay.data.modal.CategoryItem
 import com.itcc.avasarpay.databinding.FragmentDashboardBinding
 import com.itcc.avasarpay.ui.home.ui.dashboard.CategoryAdapter
 import com.itcc.avasarpay.ui.home.ui.dashboard.DashboardViewModel
@@ -95,7 +91,7 @@ class FrindGuestFragment : BaseFragment() {
         }
     }
 
-    private fun setupCategoryAdapter(jobListItems: ArrayList<CateListData>) {
+    private fun setupCategoryAdapter(jobListItems: List<CategoryItem>) {
         val adapter = CategoryAdapter(jobListItems)
         val recyclerView = binding.rvCocktail
         recyclerView.adapter = adapter

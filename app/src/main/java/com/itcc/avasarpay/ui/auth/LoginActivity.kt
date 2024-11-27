@@ -33,6 +33,7 @@ import com.itcc.avasarpay.R
 import com.itcc.avasarpay.base.BaseActivity
 import com.itcc.avasarpay.base.UiState
 import com.itcc.avasarpay.databinding.ActivityLoginBinding
+import com.itcc.avasarpay.dialog.EmailInfoDialog
 import com.itcc.avasarpay.ui.home.DashboardActivity
 
 import com.itcc.avasarpay.utils.Util.preventMultipleClicks
@@ -93,12 +94,6 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
             fcmToken = task.result
 
             Logger.d("FCM Token", fcmToken.toString())
-            // toast to show  message
-            Toast.makeText(
-                baseContext,
-                "Firebase Generated Successfully and saved to realtime database",
-                Toast.LENGTH_SHORT
-            ).show()
         })
 
     }
@@ -114,8 +109,8 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                     when (it) {
                         is UiState.Success -> {
                             hideProgressbar()
-                            session.isLoggedIn =true
-                            showToast(it.data.message.toString())
+                            session.isLoggedIn = true
+                            showEmailInfoDialog()
                         }
 
                         is UiState.Loading -> {
@@ -200,5 +195,15 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
 
         }
 
+    }
+
+    private fun showEmailInfoDialog() {
+        val dialog = EmailInfoDialog.newInstance(
+            object : EmailInfoDialog.OnItemClick {
+                override fun onItemCLicked() {
+
+                }
+            })
+        dialog.show(supportFragmentManager, "YesNO")
     }
 }

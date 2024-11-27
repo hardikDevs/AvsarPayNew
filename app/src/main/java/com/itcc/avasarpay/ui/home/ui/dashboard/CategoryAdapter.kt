@@ -6,8 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.itcc.avasarpay.R
-import com.itcc.avasarpay.data.modal.CateListData
-import com.itcc.avasarpay.data.modal.CateListRes
+import com.itcc.avasarpay.data.modal.CategoryItem
 import com.itcc.avasarpay.databinding.EventSingleBinding
 import com.itcc.stonna.utils.ItemClickListener
 
@@ -16,16 +15,16 @@ import com.itcc.stonna.utils.ItemClickListener
  *Created By Hardik on 06-03-2024.
  */
 class CategoryAdapter(
-    private val list: ArrayList<CateListData>
+    private val list: List<CategoryItem>
 ) : RecyclerView.Adapter<CategoryAdapter.DataViewHolder>() {
-    lateinit var itemClickListener: ItemClickListener<CateListData>
+    lateinit var itemClickListener: ItemClickListener<CategoryItem>
 
     class DataViewHolder(private val context: Context,private val binding: EventSingleBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(data: CateListData, itemClickListener: ItemClickListener<CateListData>) {
+        fun bind(data: CategoryItem, itemClickListener: ItemClickListener<CategoryItem>) {
             binding.tvCategoryName.text = data.name
 
-            Glide.with(context).load(data.featured_image).placeholder(R.drawable.placeholder1)
+            Glide.with(context).load(data.featuredImage).placeholder(R.drawable.placeholder1)
                 .into(binding.imgDisable)
             itemView.setOnClickListener {
                // itemClickListener(lead)

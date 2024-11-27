@@ -4,26 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import com.itcc.avasarpay.base.BaseFragment
-import com.itcc.avasarpay.base.UiState
-import com.itcc.avasarpay.data.modal.CateListData
-import com.itcc.avasarpay.databinding.FragmentGuestBinding
 import com.itcc.avasarpay.databinding.FragmentGuestMainBinding
-import com.itcc.avasarpay.databinding.FragmentNotificationsBinding
-import com.itcc.avasarpay.ui.home.ui.dashboard.CategoryAdapter
-import com.itcc.avasarpay.ui.home.ui.dashboard.DashboardFragment
-import com.itcc.avasarpay.ui.home.ui.dashboard.DashboardViewModel
-import com.itcc.stonna.utils.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class GuestsFragment : BaseFragment() {

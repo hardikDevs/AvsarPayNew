@@ -1,11 +1,10 @@
 package com.itcc.avasarpay.data.api
 
 
-import com.itcc.avasarpay.data.modal.CateListRes
+import com.itcc.avasarpay.data.modal.CategoryListModal
 import com.itcc.avasarpay.data.modal.GuestModal
 import com.itcc.avasarpay.data.modal.LoginModal
 import com.itcc.avasarpay.data.modal.MagicLinkModal
-import com.itcc.avasarpay.data.modal.RegisterReq
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
@@ -28,7 +27,7 @@ interface NetworkService {
     suspend fun sendMagicLink(@Body body: RequestBody): Response<MagicLinkModal>
 
     @GET("categories")
-    suspend fun getCategoryList(): Response<CateListRes>
+    suspend fun getCategoryList(): Response<CategoryListModal>
 
     @GET("contacts")
     suspend fun getGuestList(): Response<GuestModal>

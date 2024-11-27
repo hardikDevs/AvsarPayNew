@@ -9,12 +9,13 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical"
     android:weightSum="1"
+    android:layout_margin="@dimen/_10sdp"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
+
             android:orientation="horizontal"
             android:weightSum="1">
 
@@ -101,9 +102,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_12sdp"
                     android:layout_marginTop="@dimen/_12sdp"
-                    android:layout_marginEnd="@dimen/_12sdp"
+
                     android:orientation="horizontal"
                     android:weightSum="1">
 
@@ -112,7 +112,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="@font/interbold"
-                        android:text="Create your event"
+                        android:text="Select event"
                         android:textColor="@color/app_black"
                         android:textSize="@dimen/_16ssp" />
 
@@ -136,14 +136,13 @@
                 </LinearLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_20sdp"
+
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_marginEnd="@dimen/_20sdp"
+
                     android:layout_marginBottom="@dimen/_10sdp"
-                    android:hint="Event Type"
                     android:textColorHint="@color/drwable_image"
                     app:boxCornerRadiusBottomEnd="@dimen/_8sdp"
                     app:boxCornerRadiusBottomStart="@dimen/_8sdp"
@@ -152,18 +151,44 @@
                     app:boxStrokeColor="@color/color_52C0FF"
                     app:hintTextColor="@color/drwable_image">
 
-                    <AutoCompleteTextView
-                        android:id="@+id/autoCompleteTextView"
+                    <com.skydoves.powerspinner.PowerSpinnerView
+                        android:id="@+id/spCategory"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/interbold"
-                        android:inputType="none"
-                        android:textColor="@color/app_black"
-                        android:textSize="@dimen/_11ssp"
-                        tools:text="Happy" />
+                        android:layout_height="@dimen/_40sdp"
+                        android:background="@drawable/bg_spinner"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:gravity="start|center_vertical"
+                        android:hint="Event Type"
+                        android:padding="10dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/black"
+                        android:textSize="14.5sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/txtStatus"
+                        app:spinner_arrow_animate="true"
+                        app:spinner_arrow_gravity="end"
+                        app:spinner_arrow_padding="8dp"
+                        app:spinner_arrow_show="true"
+                        app:spinner_arrow_tint="@color/black"
+                        app:spinner_divider_color="@color/black"
+                        app:spinner_divider_show="true"
+                        app:spinner_divider_size="0.4dp"
+                        app:spinner_item_height="46dp"
+                        app:spinner_popup_animation="dropdown"
+                        app:spinner_popup_background="@drawable/spinner_background"
+                        app:spinner_popup_elevation="14dp"
+                        app:spinner_selected_item_background="@drawable/selected_item_background" />
                 </com.google.android.material.textfield.TextInputLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_5sdp"
 
+                    android:fontFamily="@font/interbold"
+                    android:text="Select Template"
+                    android:textColor="@color/app_black"
+                    android:textSize="@dimen/_12ssp" />
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/chooseTemp"
                     android:layout_width="wrap_content"
@@ -172,452 +197,730 @@
                     android:orientation="horizontal"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:listitem="@layout/row_template_single" />
+              <LinearLayout
+                  android:id="@+id/linMarriage"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical">
+
+
+                  <LinearLayout
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_marginTop="@dimen/_12sdp"
+                      android:orientation="horizontal"
+                      android:weightSum="1">
+
+                      <TextView
+                          android:layout_width="0dp"
+                          android:layout_height="wrap_content"
+                          android:layout_marginEnd="@dimen/_5sdp"
+                          android:layout_weight="0.5"
+                          android:fontFamily="@font/interbold"
+                          android:text="Upload Poster Picture"
+                          android:textColor="@color/app_black"
+                          android:textSize="@dimen/_12ssp" />
+
+                      <TextView
+                          android:layout_width="0dp"
+                          android:layout_height="wrap_content"
+                          android:layout_marginStart="@dimen/_5sdp"
+                          android:layout_weight="0.5"
+                          android:fontFamily="@font/interbold"
+                          android:text="Preview"
+                          android:textColor="@color/app_black"
+                          android:textSize="@dimen/_12ssp" />
+                  </LinearLayout>
+
+                  <LinearLayout
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_marginTop="@dimen/_12sdp"
+                      android:orientation="horizontal"
+                      android:weightSum="1">
+
+                      <LinearLayout
+                          android:layout_width="0dp"
+                          android:layout_height="@dimen/_80sdp"
+                          android:layout_marginEnd="@dimen/_5sdp"
+                          android:layout_weight="0.5"
+                          android:background="@drawable/dotted_square"
+                          android:gravity="center">
+
+                          <ImageView
+                              android:layout_width="@dimen/_30sdp"
+                              android:layout_height="@dimen/_30sdp"
+                              android:layout_gravity="center"
+                              android:src="@drawable/upload_ic" />
+
+                      </LinearLayout>
+
+                      <LinearLayout
+                          android:layout_width="0dp"
+                          android:layout_height="@dimen/_80sdp"
+                          android:layout_marginStart="@dimen/_5sdp"
+                          android:layout_weight="0.5"
+                          android:background="@drawable/rounded_edittext_white_16"
+                          android:backgroundTint="#D4C5FF"
+                          android:gravity="center">
+
+                          <ImageView
+                              android:layout_width="@dimen/_30sdp"
+                              android:layout_height="@dimen/_30sdp"
+                              android:layout_gravity="center"
+                              android:src="@drawable/gallery_ic" />
+                      </LinearLayout>
+
+                  </LinearLayout>
+
+                  <com.google.android.material.textfield.TextInputLayout
+                      android:id="@+id/eventTitleMain"
+                      style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_below="@id/img"
+                      android:layout_marginTop="@dimen/_10sdp"
+                      android:layout_marginBottom="@dimen/_10sdp"
+                      android:hint="Event Title"
+                      android:textColorHint="@color/drwable_image"
+                      app:boxCornerRadiusBottomEnd="@dimen/_8sdp"
+                      app:boxCornerRadiusBottomStart="@dimen/_8sdp"
+                      app:boxCornerRadiusTopEnd="@dimen/_8sdp"
+                      app:boxCornerRadiusTopStart="@dimen/_8sdp"
+                      app:boxStrokeColor="@color/color_52C0FF"
+                      app:hintTextColor="@color/drwable_image">
+
+                      <com.google.android.material.textfield.TextInputEditText
+                          android:id="@+id/eventTitle"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:fontFamily="@font/interbold"
+                          android:imeOptions="actionNext"
+                          android:inputType="text"
+                          android:textColor="@color/app_black"
+                          android:textSize="@dimen/_11ssp" />
+
+                  </com.google.android.material.textfield.TextInputLayout>
+
+                  <com.google.android.material.textfield.TextInputLayout
+                      android:id="@+id/eventDateMain"
+                      style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_below="@id/img"
+                      android:layout_marginTop="@dimen/_10sdp"
+                      android:layout_marginBottom="@dimen/_10sdp"
+                      android:hint="Event Date"
+                      android:textColorHint="@color/drwable_image"
+                      app:boxCornerRadiusBottomEnd="@dimen/_8sdp"
+                      app:boxCornerRadiusBottomStart="@dimen/_8sdp"
+                      app:boxCornerRadiusTopEnd="@dimen/_8sdp"
+                      app:boxCornerRadiusTopStart="@dimen/_8sdp"
+                      app:boxStrokeColor="@color/color_52C0FF"
+                      app:endIconDrawable="@drawable/ic_calender"
+                      app:endIconMode="custom"
+                      app:hintTextColor="@color/drwable_image">
+
+                      <com.google.android.material.textfield.TextInputEditText
+                          android:id="@+id/eventDate"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:clickable="false"
+                          android:cursorVisible="false"
+                          android:focusable="false"
+                          android:focusableInTouchMode="false"
+                          android:fontFamily="@font/interbold"
+                          android:imeOptions="actionNext"
+                          android:inputType="text"
+                          android:textColor="@color/app_black"
+                          android:textSize="@dimen/_11ssp" />
+
+                  </com.google.android.material.textfield.TextInputLayout>
+
+                  <com.google.android.material.textfield.TextInputLayout
+                      android:id="@+id/eventVanueMain"
+                      style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_below="@id/img"
+                      android:layout_marginTop="@dimen/_10sdp"
+                      android:layout_marginBottom="@dimen/_10sdp"
+                      android:hint="Event Venue"
+                      android:textColorHint="@color/drwable_image"
+                      app:boxCornerRadiusBottomEnd="@dimen/_8sdp"
+                      app:boxCornerRadiusBottomStart="@dimen/_8sdp"
+                      app:boxCornerRadiusTopEnd="@dimen/_8sdp"
+                      app:boxCornerRadiusTopStart="@dimen/_8sdp"
+                      app:boxStrokeColor="@color/color_52C0FF"
+                      app:hintTextColor="@color/drwable_image">
+
+                      <com.google.android.material.textfield.TextInputEditText
+                          android:id="@+id/eventVenue"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:fontFamily="@font/interbold"
+                          android:imeOptions="actionNext"
+                          android:inputType="text"
+                          android:textColor="@color/app_black"
+                          android:textSize="@dimen/_11ssp" />
+
+                  </com.google.android.material.textfield.TextInputLayout>
+
+                  <com.google.android.material.textfield.TextInputLayout
+                      android:id="@+id/groomNameMain"
+                      style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_below="@id/img"
+                      android:layout_marginTop="@dimen/_10sdp"
+                      android:layout_marginBottom="@dimen/_10sdp"
+                      android:hint="Enter Groom’s  Name"
+                      android:textColorHint="@color/drwable_image"
+                      app:boxCornerRadiusBottomEnd="@dimen/_8sdp"
+                      app:boxCornerRadiusBottomStart="@dimen/_8sdp"
+                      app:boxCornerRadiusTopEnd="@dimen/_8sdp"
+                      app:boxCornerRadiusTopStart="@dimen/_8sdp"
+                      app:boxStrokeColor="@color/color_52C0FF"
+                      app:hintTextColor="@color/drwable_image">
+
+                      <com.google.android.material.textfield.TextInputEditText
+                          android:id="@+id/groomName"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:fontFamily="@font/interbold"
+                          android:imeOptions="actionNext"
+                          android:inputType="text"
+                          android:textColor="@color/app_black"
+                          android:textSize="@dimen/_11ssp" />
+
+                  </com.google.android.material.textfield.TextInputLayout>
+
+                  <LinearLayout
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_marginTop="@dimen/_12sdp"
+                      android:orientation="horizontal"
+                      android:weightSum="1">
+
+                      <TextView
+                          android:layout_width="0dp"
+                          android:layout_height="wrap_content"
+                          android:layout_marginEnd="@dimen/_5sdp"
+                          android:layout_weight="0.5"
+                          android:fontFamily="@font/interbold"
+                          android:text="Upload Groom’s Picture"
+                          android:textColor="@color/app_black"
+                          android:textSize="@dimen/_12ssp" />
+
+                      <TextView
+                          android:layout_width="0dp"
+                          android:layout_height="wrap_content"
+                          android:layout_marginStart="@dimen/_5sdp"
+                          android:layout_weight="0.5"
+                          android:fontFamily="@font/interbold"
+                          android:text="Preview"
+                          android:textColor="@color/app_black"
+                          android:textSize="@dimen/_12ssp" />
+                  </LinearLayout>
+
+                  <LinearLayout
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_marginTop="@dimen/_12sdp"
+                      android:orientation="horizontal"
+                      android:weightSum="1">
+
+                      <LinearLayout
+                          android:layout_width="0dp"
+                          android:layout_height="@dimen/_80sdp"
+                          android:layout_marginEnd="@dimen/_5sdp"
+                          android:layout_weight="0.5"
+                          android:background="@drawable/dotted_square"
+                          android:gravity="center">
+
+                          <ImageView
+                              android:layout_width="@dimen/_30sdp"
+                              android:layout_height="@dimen/_30sdp"
+                              android:layout_gravity="center"
+                              android:src="@drawable/upload_ic" />
+
+                      </LinearLayout>
+
+                      <LinearLayout
+                          android:layout_width="0dp"
+                          android:layout_height="@dimen/_80sdp"
+                          android:layout_marginStart="@dimen/_5sdp"
+                          android:layout_weight="0.5"
+                          android:background="@drawable/rounded_edittext_white_16"
+                          android:backgroundTint="#D4C5FF"
+                          android:gravity="center">
+
+                          <ImageView
+                              android:layout_width="@dimen/_30sdp"
+                              android:layout_height="@dimen/_30sdp"
+                              android:layout_gravity="center"
+                              android:src="@drawable/gallery_ic" />
+                      </LinearLayout>
+
+                  </LinearLayout>
+
+                  <com.google.android.material.textfield.TextInputLayout
+                      android:id="@+id/brideNameMain"
+                      style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_below="@id/img"
+                      android:layout_marginTop="@dimen/_10sdp"
+                      android:layout_marginBottom="@dimen/_10sdp"
+                      android:hint="Enter Bride’s  Name"
+                      android:textColorHint="@color/drwable_image"
+                      app:boxCornerRadiusBottomEnd="@dimen/_8sdp"
+                      app:boxCornerRadiusBottomStart="@dimen/_8sdp"
+                      app:boxCornerRadiusTopEnd="@dimen/_8sdp"
+                      app:boxCornerRadiusTopStart="@dimen/_8sdp"
+                      app:boxStrokeColor="@color/color_52C0FF"
+                      app:hintTextColor="@color/drwable_image">
+
+                      <com.google.android.material.textfield.TextInputEditText
+                          android:id="@+id/brideName"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:fontFamily="@font/interbold"
+                          android:imeOptions="actionNext"
+                          android:inputType="text"
+                          android:textColor="@color/app_black"
+                          android:textSize="@dimen/_11ssp" />
+
+                  </com.google.android.material.textfield.TextInputLayout>
+
+                  <LinearLayout
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_marginTop="@dimen/_12sdp"
+                      android:orientation="horizontal"
+                      android:weightSum="1">
+
+                      <TextView
+                          android:layout_width="0dp"
+                          android:layout_height="wrap_content"
+                          android:layout_marginEnd="@dimen/_5sdp"
+                          android:layout_weight="0.5"
+                          android:fontFamily="@font/interbold"
+                          android:text="Upload Bride’s Picture"
+                          android:textColor="@color/app_black"
+                          android:textSize="@dimen/_12ssp" />
+
+                      <TextView
+                          android:layout_width="0dp"
+                          android:layout_height="wrap_content"
+                          android:layout_marginStart="@dimen/_5sdp"
+                          android:layout_weight="0.5"
+                          android:fontFamily="@font/interbold"
+                          android:text="Preview"
+                          android:textColor="@color/app_black"
+                          android:textSize="@dimen/_12ssp" />
+                  </LinearLayout>
+
+                  <LinearLayout
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_marginTop="@dimen/_12sdp"
+                      android:orientation="horizontal"
+                      android:weightSum="1">
+
+                      <LinearLayout
+                          android:layout_width="0dp"
+                          android:layout_height="@dimen/_80sdp"
+                          android:layout_marginEnd="@dimen/_5sdp"
+                          android:layout_weight="0.5"
+                          android:background="@drawable/dotted_square"
+                          android:gravity="center">
+
+                          <ImageView
+                              android:layout_width="@dimen/_30sdp"
+                              android:layout_height="@dimen/_30sdp"
+                              android:layout_gravity="center"
+                              android:src="@drawable/upload_ic" />
+
+                      </LinearLayout>
+
+                      <LinearLayout
+                          android:layout_width="0dp"
+                          android:layout_height="@dimen/_80sdp"
+                          android:layout_marginStart="@dimen/_5sdp"
+                          android:layout_weight="0.5"
+                          android:background="@drawable/rounded_edittext_white_16"
+                          android:backgroundTint="#D4C5FF"
+                          android:gravity="center">
+
+                          <ImageView
+                              android:layout_width="@dimen/_30sdp"
+                              android:layout_height="@dimen/_30sdp"
+                              android:layout_gravity="center"
+                              android:src="@drawable/gallery_ic" />
+                      </LinearLayout>
+
+                  </LinearLayout>
+
+              </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/linBirthday"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_12sdp"
-                    android:layout_marginTop="@dimen/_12sdp"
-                    android:layout_marginEnd="@dimen/_12sdp"
-                    android:orientation="horizontal"
-                    android:weightSum="1">
+                    android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/_5sdp"
-                        android:layout_weight="0.5"
-                        android:fontFamily="@font/interbold"
-                        android:text="Upload Poster Picture"
-                        android:textColor="@color/app_black"
-                        android:textSize="@dimen/_12ssp" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_5sdp"
-                        android:layout_weight="0.5"
-                        android:fontFamily="@font/interbold"
-                        android:text="Preview"
-                        android:textColor="@color/app_black"
-                        android:textSize="@dimen/_12ssp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_12sdp"
-                    android:layout_marginTop="@dimen/_12sdp"
-                    android:layout_marginEnd="@dimen/_12sdp"
-                    android:orientation="horizontal"
-                    android:weightSum="1">
 
                     <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/_80sdp"
-                        android:layout_marginEnd="@dimen/_5sdp"
-                        android:layout_weight="0.5"
-                        android:background="@drawable/dotted_square"
-                        android:gravity="center">
-
-                        <ImageView
-                            android:layout_width="@dimen/_30sdp"
-                            android:layout_height="@dimen/_30sdp"
-                            android:layout_gravity="center"
-                            android:src="@drawable/upload_ic" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/_80sdp"
-                        android:layout_marginStart="@dimen/_5sdp"
-                        android:layout_weight="0.5"
-                        android:background="@drawable/rounded_edittext_white_16"
-                        android:backgroundTint="#D4C5FF"
-                        android:gravity="center">
-
-                        <ImageView
-                            android:layout_width="@dimen/_30sdp"
-                            android:layout_height="@dimen/_30sdp"
-                            android:layout_gravity="center"
-                            android:src="@drawable/gallery_ic" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/eventTitleMain"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/img"
-                    android:layout_marginStart="@dimen/_20sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_marginEnd="@dimen/_20sdp"
-                    android:layout_marginBottom="@dimen/_10sdp"
-                    android:hint="Event Title"
-                    android:textColorHint="@color/drwable_image"
-                    app:boxCornerRadiusBottomEnd="@dimen/_8sdp"
-                    app:boxCornerRadiusBottomStart="@dimen/_8sdp"
-                    app:boxCornerRadiusTopEnd="@dimen/_8sdp"
-                    app:boxCornerRadiusTopStart="@dimen/_8sdp"
-                    app:boxStrokeColor="@color/color_52C0FF"
-                    app:hintTextColor="@color/drwable_image">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/eventTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/interbold"
-                        android:imeOptions="actionNext"
-                        android:inputType="text"
-                        android:textColor="@color/app_black"
-                        android:textSize="@dimen/_11ssp" />
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
 
-                </com.google.android.material.textfield.TextInputLayout>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:layout_weight="0.5"
+                            android:fontFamily="@font/interbold"
+                            android:text="Upload Poster Picture"
+                            android:textColor="@color/app_black"
+                            android:textSize="@dimen/_12ssp" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/eventDateMain"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/img"
-                    android:layout_marginStart="@dimen/_20sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_marginEnd="@dimen/_20sdp"
-                    android:layout_marginBottom="@dimen/_10sdp"
-                    android:hint="Event Date"
-                    android:textColorHint="@color/drwable_image"
-                    app:boxCornerRadiusBottomEnd="@dimen/_8sdp"
-                    app:boxCornerRadiusBottomStart="@dimen/_8sdp"
-                    app:boxCornerRadiusTopEnd="@dimen/_8sdp"
-                    app:boxCornerRadiusTopStart="@dimen/_8sdp"
-                    app:boxStrokeColor="@color/color_52C0FF"
-                    app:endIconDrawable="@drawable/ic_calender"
-                    app:endIconMode="custom"
-                    app:hintTextColor="@color/drwable_image">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/eventDate"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:clickable="false"
-                        android:cursorVisible="false"
-                        android:focusable="false"
-                        android:focusableInTouchMode="false"
-                        android:fontFamily="@font/interbold"
-                        android:imeOptions="actionNext"
-                        android:inputType="text"
-                        android:textColor="@color/app_black"
-                        android:textSize="@dimen/_11ssp" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/eventVanueMain"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/img"
-                    android:layout_marginStart="@dimen/_20sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_marginEnd="@dimen/_20sdp"
-                    android:layout_marginBottom="@dimen/_10sdp"
-                    android:hint="Event Venue"
-                    android:textColorHint="@color/drwable_image"
-                    app:boxCornerRadiusBottomEnd="@dimen/_8sdp"
-                    app:boxCornerRadiusBottomStart="@dimen/_8sdp"
-                    app:boxCornerRadiusTopEnd="@dimen/_8sdp"
-                    app:boxCornerRadiusTopStart="@dimen/_8sdp"
-                    app:boxStrokeColor="@color/color_52C0FF"
-                    app:hintTextColor="@color/drwable_image">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/eventVenue"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/interbold"
-                        android:imeOptions="actionNext"
-                        android:inputType="text"
-                        android:textColor="@color/app_black"
-                        android:textSize="@dimen/_11ssp" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/groomNameMain"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/img"
-                    android:layout_marginStart="@dimen/_20sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_marginEnd="@dimen/_20sdp"
-                    android:layout_marginBottom="@dimen/_10sdp"
-                    android:hint="Enter Groom’s  Name"
-                    android:textColorHint="@color/drwable_image"
-                    app:boxCornerRadiusBottomEnd="@dimen/_8sdp"
-                    app:boxCornerRadiusBottomStart="@dimen/_8sdp"
-                    app:boxCornerRadiusTopEnd="@dimen/_8sdp"
-                    app:boxCornerRadiusTopStart="@dimen/_8sdp"
-                    app:boxStrokeColor="@color/color_52C0FF"
-                    app:hintTextColor="@color/drwable_image">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/groomName"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/interbold"
-                        android:imeOptions="actionNext"
-                        android:inputType="text"
-                        android:textColor="@color/app_black"
-                        android:textSize="@dimen/_11ssp" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_12sdp"
-                    android:layout_marginTop="@dimen/_12sdp"
-                    android:layout_marginEnd="@dimen/_12sdp"
-                    android:orientation="horizontal"
-                    android:weightSum="1">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/_5sdp"
-                        android:layout_weight="0.5"
-                        android:fontFamily="@font/interbold"
-                        android:text="Upload Groom’s Picture"
-                        android:textColor="@color/app_black"
-                        android:textSize="@dimen/_12ssp" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_5sdp"
-                        android:layout_weight="0.5"
-                        android:fontFamily="@font/interbold"
-                        android:text="Preview"
-                        android:textColor="@color/app_black"
-                        android:textSize="@dimen/_12ssp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_12sdp"
-                    android:layout_marginTop="@dimen/_12sdp"
-                    android:layout_marginEnd="@dimen/_12sdp"
-                    android:orientation="horizontal"
-                    android:weightSum="1">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/_80sdp"
-                        android:layout_marginEnd="@dimen/_5sdp"
-                        android:layout_weight="0.5"
-                        android:background="@drawable/dotted_square"
-                        android:gravity="center">
-
-                        <ImageView
-                            android:layout_width="@dimen/_30sdp"
-                            android:layout_height="@dimen/_30sdp"
-                            android:layout_gravity="center"
-                            android:src="@drawable/upload_ic" />
-
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_weight="0.5"
+                            android:fontFamily="@font/interbold"
+                            android:text="Preview"
+                            android:textColor="@color/app_black"
+                            android:textSize="@dimen/_12ssp" />
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/_80sdp"
-                        android:layout_marginStart="@dimen/_5sdp"
-                        android:layout_weight="0.5"
-                        android:background="@drawable/rounded_edittext_white_16"
-                        android:backgroundTint="#D4C5FF"
-                        android:gravity="center">
-
-                        <ImageView
-                            android:layout_width="@dimen/_30sdp"
-                            android:layout_height="@dimen/_30sdp"
-                            android:layout_gravity="center"
-                            android:src="@drawable/gallery_ic" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/brideNameMain"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/img"
-                    android:layout_marginStart="@dimen/_20sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_marginEnd="@dimen/_20sdp"
-                    android:layout_marginBottom="@dimen/_10sdp"
-                    android:hint="Enter Bride’s  Name"
-                    android:textColorHint="@color/drwable_image"
-                    app:boxCornerRadiusBottomEnd="@dimen/_8sdp"
-                    app:boxCornerRadiusBottomStart="@dimen/_8sdp"
-                    app:boxCornerRadiusTopEnd="@dimen/_8sdp"
-                    app:boxCornerRadiusTopStart="@dimen/_8sdp"
-                    app:boxStrokeColor="@color/color_52C0FF"
-                    app:hintTextColor="@color/drwable_image">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/brideName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/interbold"
-                        android:imeOptions="actionNext"
-                        android:inputType="text"
-                        android:textColor="@color/app_black"
-                        android:textSize="@dimen/_11ssp" />
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
 
-                </com.google.android.material.textfield.TextInputLayout>
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/_80sdp"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:layout_weight="0.5"
+                            android:background="@drawable/dotted_square"
+                            android:gravity="center">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_12sdp"
-                    android:layout_marginTop="@dimen/_12sdp"
-                    android:layout_marginEnd="@dimen/_12sdp"
-                    android:orientation="horizontal"
-                    android:weightSum="1">
+                            <ImageView
+                                android:layout_width="@dimen/_30sdp"
+                                android:layout_height="@dimen/_30sdp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/upload_ic" />
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/_5sdp"
-                        android:layout_weight="0.5"
-                        android:fontFamily="@font/interbold"
-                        android:text="Upload Bride’s Picture"
-                        android:textColor="@color/app_black"
-                        android:textSize="@dimen/_12ssp" />
+                        </LinearLayout>
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_5sdp"
-                        android:layout_weight="0.5"
-                        android:fontFamily="@font/interbold"
-                        android:text="Preview"
-                        android:textColor="@color/app_black"
-                        android:textSize="@dimen/_12ssp" />
-                </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/_80sdp"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_weight="0.5"
+                            android:background="@drawable/rounded_edittext_white_16"
+                            android:backgroundTint="#D4C5FF"
+                            android:gravity="center">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_12sdp"
-                    android:layout_marginTop="@dimen/_12sdp"
-                    android:layout_marginEnd="@dimen/_12sdp"
-                    android:orientation="horizontal"
-                    android:weightSum="1">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/_80sdp"
-                        android:layout_marginEnd="@dimen/_5sdp"
-                        android:layout_weight="0.5"
-                        android:background="@drawable/dotted_square"
-                        android:gravity="center">
-
-                        <ImageView
-                            android:layout_width="@dimen/_30sdp"
-                            android:layout_height="@dimen/_30sdp"
-                            android:layout_gravity="center"
-                            android:src="@drawable/upload_ic" />
+                            <ImageView
+                                android:layout_width="@dimen/_30sdp"
+                                android:layout_height="@dimen/_30sdp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/gallery_ic" />
+                        </LinearLayout>
 
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/_80sdp"
-                        android:layout_marginStart="@dimen/_5sdp"
-                        android:layout_weight="0.5"
-                        android:background="@drawable/rounded_edittext_white_16"
-                        android:backgroundTint="#D4C5FF"
-                        android:gravity="center">
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/img"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:hint="Event Title"
+                        android:textColorHint="@color/drwable_image"
+                        app:boxCornerRadiusBottomEnd="@dimen/_8sdp"
+                        app:boxCornerRadiusBottomStart="@dimen/_8sdp"
+                        app:boxCornerRadiusTopEnd="@dimen/_8sdp"
+                        app:boxCornerRadiusTopStart="@dimen/_8sdp"
+                        app:boxStrokeColor="@color/color_52C0FF"
+                        app:hintTextColor="@color/drwable_image">
 
-                        <ImageView
-                            android:layout_width="@dimen/_30sdp"
-                            android:layout_height="@dimen/_30sdp"
-                            android:layout_gravity="center"
-                            android:src="@drawable/gallery_ic" />
+                        <com.google.android.material.textfield.TextInputEditText
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/interbold"
+                            android:imeOptions="actionNext"
+                            android:inputType="text"
+                            android:textColor="@color/app_black"
+                            android:textSize="@dimen/_11ssp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/img"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:hint="Event Date"
+                        android:textColorHint="@color/drwable_image"
+                        app:boxCornerRadiusBottomEnd="@dimen/_8sdp"
+                        app:boxCornerRadiusBottomStart="@dimen/_8sdp"
+                        app:boxCornerRadiusTopEnd="@dimen/_8sdp"
+                        app:boxCornerRadiusTopStart="@dimen/_8sdp"
+                        app:boxStrokeColor="@color/color_52C0FF"
+                        app:endIconDrawable="@drawable/ic_calender"
+                        app:endIconMode="custom"
+                        app:hintTextColor="@color/drwable_image">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clickable="false"
+                            android:cursorVisible="false"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false"
+                            android:fontFamily="@font/interbold"
+                            android:imeOptions="actionNext"
+                            android:inputType="text"
+                            android:textColor="@color/app_black"
+                            android:textSize="@dimen/_11ssp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/img"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:hint="Event Venue"
+                        android:textColorHint="@color/drwable_image"
+                        app:boxCornerRadiusBottomEnd="@dimen/_8sdp"
+                        app:boxCornerRadiusBottomStart="@dimen/_8sdp"
+                        app:boxCornerRadiusTopEnd="@dimen/_8sdp"
+                        app:boxCornerRadiusTopStart="@dimen/_8sdp"
+                        app:boxStrokeColor="@color/color_52C0FF"
+                        app:hintTextColor="@color/drwable_image">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/interbold"
+                            android:imeOptions="actionNext"
+                            android:inputType="text"
+                            android:textColor="@color/app_black"
+                            android:textSize="@dimen/_11ssp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/img"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:hint="Enter Groom’s  Name"
+                        android:textColorHint="@color/drwable_image"
+                        app:boxCornerRadiusBottomEnd="@dimen/_8sdp"
+                        app:boxCornerRadiusBottomStart="@dimen/_8sdp"
+                        app:boxCornerRadiusTopEnd="@dimen/_8sdp"
+                        app:boxCornerRadiusTopStart="@dimen/_8sdp"
+                        app:boxStrokeColor="@color/color_52C0FF"
+                        app:hintTextColor="@color/drwable_image">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/interbold"
+                            android:imeOptions="actionNext"
+                            android:inputType="text"
+                            android:textColor="@color/app_black"
+                            android:textSize="@dimen/_11ssp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:layout_weight="0.5"
+                            android:fontFamily="@font/interbold"
+                            android:text="Upload Groom’s Picture"
+                            android:textColor="@color/app_black"
+                            android:textSize="@dimen/_12ssp" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_weight="0.5"
+                            android:fontFamily="@font/interbold"
+                            android:text="Preview"
+                            android:textColor="@color/app_black"
+                            android:textSize="@dimen/_12ssp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/_80sdp"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:layout_weight="0.5"
+                            android:background="@drawable/dotted_square"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:layout_width="@dimen/_30sdp"
+                                android:layout_height="@dimen/_30sdp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/upload_ic" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/_80sdp"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_weight="0.5"
+                            android:background="@drawable/rounded_edittext_white_16"
+                            android:backgroundTint="#D4C5FF"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:layout_width="@dimen/_30sdp"
+                                android:layout_height="@dimen/_30sdp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/gallery_ic" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/img"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:hint="Enter Bride’s  Name"
+                        android:textColorHint="@color/drwable_image"
+                        app:boxCornerRadiusBottomEnd="@dimen/_8sdp"
+                        app:boxCornerRadiusBottomStart="@dimen/_8sdp"
+                        app:boxCornerRadiusTopEnd="@dimen/_8sdp"
+                        app:boxCornerRadiusTopStart="@dimen/_8sdp"
+                        app:boxStrokeColor="@color/color_52C0FF"
+                        app:hintTextColor="@color/drwable_image">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/interbold"
+                            android:imeOptions="actionNext"
+                            android:inputType="text"
+                            android:textColor="@color/app_black"
+                            android:textSize="@dimen/_11ssp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:layout_weight="0.5"
+                            android:fontFamily="@font/interbold"
+                            android:text="Upload Bride’s Picture"
+                            android:textColor="@color/app_black"
+                            android:textSize="@dimen/_12ssp" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_weight="0.5"
+                            android:fontFamily="@font/interbold"
+                            android:text="Preview"
+                            android:textColor="@color/app_black"
+                            android:textSize="@dimen/_12ssp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/_80sdp"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:layout_weight="0.5"
+                            android:background="@drawable/dotted_square"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:layout_width="@dimen/_30sdp"
+                                android:layout_height="@dimen/_30sdp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/upload_ic" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/_80sdp"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_weight="0.5"
+                            android:background="@drawable/rounded_edittext_white_16"
+                            android:backgroundTint="#D4C5FF"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:layout_width="@dimen/_30sdp"
+                                android:layout_height="@dimen/_30sdp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/gallery_ic" />
+                        </LinearLayout>
+
                     </LinearLayout>
 
                 </LinearLayout>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_12sdp"
-                    android:layout_marginTop="@dimen/_12sdp"
-                    android:layout_marginEnd="@dimen/_12sdp"
-                    android:fontFamily="@font/interbold"
-                    android:text="Guest Invitation List"
-                    android:textColor="@color/app_black"
-                    android:textSize="@dimen/_16ssp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40sdp"
-                    android:layout_marginStart="@dimen/_12sdp"
-                    android:layout_marginTop="@dimen/_12sdp"
-                    android:layout_marginEnd="@dimen/_12sdp"
-                    android:background="@drawable/rounded_holo"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="@dimen/_30sdp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_gravity="center"
-                        android:src="@drawable/person_fill_ic" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_15sdp"
-                        android:fontFamily="@font/interbold"
-                        android:text="Add Guest List"
-                        android:textColor="@color/color_A181FE"
-                        android:textSize="@dimen/_12ssp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40sdp"
-                    android:layout_marginStart="@dimen/_12sdp"
-                    android:layout_marginTop="@dimen/_12sdp"
-                    android:layout_marginEnd="@dimen/_12sdp"
-                    android:background="@drawable/rounded_holo"
-                    android:backgroundTint="@color/color_A181FE"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="@dimen/_30sdp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_gravity="center"
-                        android:src="@drawable/upload_ic"
-                        app:tint="@color/white" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_15sdp"
-                        android:fontFamily="@font/interbold"
-                        android:text="Import Contacts"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/_12ssp" />
-                </LinearLayout>
-
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>

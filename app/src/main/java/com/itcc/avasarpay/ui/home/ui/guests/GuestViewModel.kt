@@ -1,15 +1,9 @@
 package com.itcc.avasarpay.ui.home.ui.guests
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.itcc.avasarpay.base.UiState
-import com.itcc.avasarpay.data.modal.AddContactRes
-import com.itcc.avasarpay.data.modal.BaseModal
-import com.itcc.avasarpay.data.modal.CateListRes
 import com.itcc.avasarpay.data.modal.GuestModal
-import com.itcc.avasarpay.data.repository.CategoryRepository
 import com.itcc.avasarpay.data.repository.GuestRepository
 import com.itcc.avasarpay.utils.DispatcherProvider
 import dagger.hilt.android.lifecycle.HiltViewModel

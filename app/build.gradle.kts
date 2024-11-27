@@ -82,6 +82,9 @@ dependencies {
 
     implementation(libs.circle.imagview)
 
+    // Spiner
+    implementation (libs.powerspinner)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
