@@ -30,4 +30,9 @@
         <item name="android:textSize">14sp</item>
         <item name="android:fontFamily">@font/interbold</item>
     </style>
+
+    <style name="RadioButtonWhite">
+        <item name="android:buttonTint">@android:color/white</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
 </resources>

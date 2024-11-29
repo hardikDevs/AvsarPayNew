@@ -13,6 +13,7 @@ import com.itcc.avasarpay.base.UiState
 import com.itcc.avasarpay.data.modal.CategoryItem
 import com.itcc.avasarpay.databinding.FragmentDashboardBinding
 import com.itcc.avasarpay.ui.home.ui.event.CreateEventActivity
+import com.itcc.avasarpay.ui.home.ui.event.CreateEventSelectCategoryActivity
 import com.itcc.stonna.utils.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -58,7 +59,7 @@ class DashboardFragment : BaseFragment() {
         dashboardViewModel.getCategoryList()
         setupObserver()
         binding.createEvent.setOnClickListener {
-            startActivity(CreateEventActivity.getStartIntent(requireContext(), ""))
+            startActivity(CreateEventSelectCategoryActivity.getStartIntent(requireContext(), ""))
         }
     }
 
