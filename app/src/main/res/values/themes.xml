@@ -35,4 +35,8 @@
         <item name="android:buttonTint">@android:color/white</item>
         <item name="android:textColor">@android:color/white</item>
     </style>
+    <style name="CornerRound" parent="">
+    <item name="cornerSize">@dimen/_10sdp</item>
+    <item name="cornerRadius">@dimen/_10sdp</item>
+    </style>
 </resources>

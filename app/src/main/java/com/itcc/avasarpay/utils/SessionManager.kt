@@ -3,6 +3,7 @@ package com.itcc.stonna.utils
 
 import android.app.NotificationManager
 import android.content.Context
+import android.util.Log
 import com.google.gson.Gson
 import com.itcc.avasarpay.R
 import com.itcc.avasarpay.data.modal.LoginModal
@@ -22,18 +23,32 @@ class SessionManager@Inject constructor(
         set(isLoggedIn) = storeDataByKey(KEY_IS_LOGIN, isLoggedIn)
 
 
-    var user: LoginModal
+    var user: LoginModal?
         get() {
-            val gson = Gson()
-            val json = getDataByKey(KEY_USER_INFO, "")
-            return gson.fromJson(json, LoginModal::class.java)
+            return try {
+                val gson = Gson()
+                val json = getDataByKey(KEY_USER_INFO, "")
+                if (json.isNullOrEmpty()) {
+                    null
+                } else {
+                    gson.fromJson(json, LoginModal::class.java)
+                }
+            } catch (e: Exception) {
+                // Log the error and return null
+                Log.e("UserPreference", "Error parsing user data", e)
+                null
+            }
         }
         set(user) {
-            val gson = Gson()
-            val json = gson.toJson(user)
-            pref.edit().putString(KEY_USER_INFO, json).apply()
+            try {
+                val gson = Gson()
+                val json = user?.let { gson.toJson(it) } ?: ""
+                pref.edit().putString(KEY_USER_INFO, json).apply()
+            } catch (e: Exception) {
+                // Log the error
+                Log.e("UserPreference", "Error saving user data", e)
+            }
         }
-
 
 
 

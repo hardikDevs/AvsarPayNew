@@ -21,5 +21,7 @@ data class CategoryItem(
     val id: Int? = null,
 
     @field:SerializedName("featured_image")
-    val featuredImage: String? = null
+    val featuredImage: String? = null,
+
+    var isSelected: Boolean = false,
 )

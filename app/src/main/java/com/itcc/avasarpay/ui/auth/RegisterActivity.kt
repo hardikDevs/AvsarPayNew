@@ -68,8 +68,6 @@ class RegisterActivity : BaseActivity(), View.OnClickListener {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
         getIntentAndFetchData()
-
-
         setupObserver()
         addClickListener()
     }
@@ -156,7 +154,7 @@ class RegisterActivity : BaseActivity(), View.OnClickListener {
 
 
 
-        val id = session.user.data?.id
+        val id = session.user?.data?.id
 
         profileViewModal.updateProfile(id!!, name, phone, path, filename)
 

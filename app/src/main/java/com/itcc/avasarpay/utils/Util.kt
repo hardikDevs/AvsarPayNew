@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.AppCompatTextView
 import com.google.android.material.textfield.TextInputLayout
+import com.itcc.avasarpay.utils.AppConstant.DATE_FORMAT
 import com.itcc.avasarpay.utils.AppConstant.DATE_FORMAT_DD_MM_YY
 import org.json.JSONArray
 import org.json.JSONException
@@ -148,7 +149,7 @@ object Util {
         try {
             val f: DateFormat = SimpleDateFormat(AppConstant.DATE_FORMAT_DD_MM_YY)
             val d: Date = f.parse(date)
-            val date: DateFormat = SimpleDateFormat("yyyy-MM-dd")
+            val date: DateFormat = SimpleDateFormat(DATE_FORMAT)
             convertDate = date.format(d).toString()
         } catch (e: ParseException) {
             e.printStackTrace()
@@ -166,6 +167,10 @@ object Util {
     fun millisToFormat(millis: Long): String {
         val timeZone = TimeZone.getDefault()
         return millisToFormat(millis, DATE_FORMAT_DD_MM_YY, timeZone)
+    }
+    fun millisToHHmmss(millis: Long): String {
+        val timeZone = TimeZone.getDefault()
+        return millisToFormat(millis, "HH:mm:ss", timeZone)
     }
     fun millisToFormat(milis: Long, format: String, tz: TimeZone): String {
         var millis = milis

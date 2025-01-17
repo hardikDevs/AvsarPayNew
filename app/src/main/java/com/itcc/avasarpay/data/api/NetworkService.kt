@@ -39,4 +39,20 @@ interface NetworkService {
         @Path("id") id: Int, @PartMap params: Map<String, RequestBody>,
         @Part file :MultipartBody.Part
     ): Response<LoginModal>
+
+    @Multipart
+    @JvmSuppressWildcards
+    @POST("event")
+    suspend fun createEvent(
+       @PartMap params: Map<String, RequestBody>,
+        @Part groomPhoto :MultipartBody.Part?,
+       @Part bridePhoto :MultipartBody.Part?,
+       @Part couplePhoto1 :MultipartBody.Part?,
+       @Part couplePhoto2 :MultipartBody.Part?,
+       @Part couplePhoto3 :MultipartBody.Part?,
+       @Part posterPhoto :MultipartBody.Part?,
+       @Part invitationCardPhoto : MultipartBody.Part?,
+       @Part husbandPhoto : MultipartBody.Part?,
+       @Part wifePhoto : MultipartBody.Part?
+    ): Response<LoginModal>
 }

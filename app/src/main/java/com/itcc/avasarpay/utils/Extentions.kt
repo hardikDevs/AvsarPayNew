@@ -58,7 +58,9 @@ fun View.invisible() {
 fun View.hide() {
     this.visibility = View.GONE
 }
-
+ fun hideViews(vararg views: View) {
+    views.forEach { it.hide() }
+}
 fun EditText.getValue(): String {
     return this.text.toString().trim()
 }

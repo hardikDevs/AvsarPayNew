@@ -19,16 +19,7 @@ class GuestsFragment : BaseFragment() {
     private val binding get() = _binding!!
 
     companion object {
-        private const val ARG_SECTION_NUMBER = "section_number"
 
-        @JvmStatic
-        fun newInstance(sectionNumber: Int): GuestsFragment {
-            return GuestsFragment().apply {
-                arguments = Bundle().apply {
-                    putInt(ARG_SECTION_NUMBER, sectionNumber)
-                }
-            }
-        }
     }
 
     override fun onCreateView(
@@ -40,19 +31,13 @@ class GuestsFragment : BaseFragment() {
 
         _binding = FragmentGuestMainBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
-
         return root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val adapter = ViewPagerAdapter(parentFragmentManager)
-        adapter.addFragment(AllGuestFragment(), "All Guests")
-        adapter.addFragment(FrindGuestFragment(), "Friends & Family")
 
-        binding.viewPager.adapter = adapter
-        binding.tabs.setupWithViewPager(binding.viewPager)
+
     }
 
     override fun onDestroyView() {

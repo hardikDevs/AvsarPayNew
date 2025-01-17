@@ -3,10 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
     <application
         android:name=".MyApp"
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
@@ -19,7 +19,6 @@
             android:name=".ui.home.DashboardActivity"
             android:exported="true"
             android:label="@string/title_activity_dashboard">
-
         </activity>
         <activity
             android:name=".ui.auth.RegisterActivity"
@@ -38,6 +37,15 @@
             android:exported="false" />
         <activity
             android:name=".ui.home.ui.event.CreateEventSelectCategoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home.ui.guests.AddGuestActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home.ui.guests.InviteGuestActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home.ui.event.contact.ImportContactActivity"
             android:exported="false" />
         <activity
             android:name=".ui.SplashScreen"

@@ -1,4 +1,4 @@
-package com.itcc.avasarpay.ui.home.ui.event
+package com.itcc.avasarpay.ui.home.ui.guests
 
 import android.content.Context
 import android.content.Intent
@@ -20,6 +20,7 @@ import com.itcc.avasarpay.R
 import com.itcc.avasarpay.base.BaseActivity
 import com.itcc.avasarpay.base.UiState
 import com.itcc.avasarpay.data.modal.CategoryItem
+import com.itcc.avasarpay.databinding.ActivityAddGuestBinding
 import com.itcc.avasarpay.databinding.ActivityCreateEventBinding
 import com.itcc.avasarpay.databinding.ActivityCreateEventStep1Binding
 import com.itcc.avasarpay.databinding.ActivityDashboardBinding
@@ -32,22 +33,21 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class CreateEventSelectCategoryActivity : BaseActivity() {
+class AddGuestActivity : BaseActivity() {
 
-    private lateinit var binding: ActivityCreateEventStep1Binding
+    private lateinit var binding: ActivityAddGuestBinding
 
     private val dashboardViewModel: DashboardViewModel by viewModels()
 
     private var categoryId = "0"
-    private val list: MutableList<CategoryItem>  = mutableListOf()
-    private lateinit var adapter: CategorySelectionAdapter
+
 
     companion object {
 
         private const val EXTRAS_TITLE = "EXTRAS_TITLE"
 
         fun getStartIntent(context: Context, country: String): Intent {
-            return Intent(context, CreateEventSelectCategoryActivity::class.java)
+            return Intent(context, AddGuestActivity::class.java)
                 .apply {
                     putExtra(EXTRAS_TITLE, country)
                 }
@@ -57,38 +57,13 @@ class CreateEventSelectCategoryActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityCreateEventStep1Binding.inflate(layoutInflater)
+        binding = ActivityAddGuestBinding.inflate(layoutInflater)
         setContentView(binding.root)
         enableEdgeToEdge()
         setupObserver()
-        dashboardViewModel.getCategoryList()
-
-        binding.button.setOnClickListener {
-            val selectedEvent = list.find { it.isSelected }
-            Toast.makeText(this, "Selected: ${selectedEvent?.name}", Toast.LENGTH_SHORT).show()
-            startActivity(selectedEvent?.id?.let { it1 ->
-                CreateEventActivity.getStartIntent(this,
-                    it1
-                )
-            })
-        }
 
     }
 
-    private fun setupCategoryAdapter(categoryItem: List<CategoryItem>) {
-       adapter = CategorySelectionAdapter(categoryItem) { data, selectedPosition ->
-            updateSelection(selectedPosition)
-        }
-        val recyclerView = binding.rvCategory
-        recyclerView.adapter = adapter
-    }
-
-    private fun updateSelection(selectedPosition: Int) {
-        list.forEachIndexed { index, event ->
-            event.isSelected = index == selectedPosition
-        }
-        adapter.notifyDataSetChanged()
-    }
 
     /**
      * Get Flow Event
@@ -100,9 +75,6 @@ class CreateEventSelectCategoryActivity : BaseActivity() {
                     when (it) {
                         is UiState.Success -> {
                             hideProgressbar()
-                            list.clear()
-                            list.addAll(it.data.item)
-                            setupCategoryAdapter(it.data.item)
                         }
 
                         is UiState.Loading -> {
@@ -115,7 +87,7 @@ class CreateEventSelectCategoryActivity : BaseActivity() {
                         is UiState.Error -> {
                             hideProgressbar()
                             binding.root.showSnackBar(
-                                this@CreateEventSelectCategoryActivity,
+                                this@AddGuestActivity,
                                 it.message
                             )
                         }

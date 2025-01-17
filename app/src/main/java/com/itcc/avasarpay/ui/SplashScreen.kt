@@ -148,11 +148,11 @@ class SplashScreen : BaseActivity() {
     private fun handleRedirection() {
 
         Handler(Looper.getMainLooper()).postDelayed({
-            if (session.isLoggedIn && session.user.data?.name!=null)
+            if (session.isLoggedIn && session.user?.data?.name!=null)
                 startActivity(DashboardActivity.getStartIntent(this, "test"))
 
-           else if (session.isLoggedIn && session.user.data?.name==null)
-                startActivity(RegisterActivity.getStartIntent(this, session.user.data?.email.toString()))
+           else if (session.isLoggedIn && session.user?.data?.name==null)
+                startActivity(RegisterActivity.getStartIntent(this, session.user?.data?.email.toString()))
             else {
                 startActivity(LoginActivity.getStartIntent(this, "test"))
             }

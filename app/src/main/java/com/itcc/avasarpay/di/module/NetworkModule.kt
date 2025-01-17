@@ -32,6 +32,7 @@ object NetworkModule {
     fun provideBaseUrl() = "https://avasarpay.itcc.net.au/api/"
 
 
+
     @Provides
     @Singleton
     fun provideDispatcherProvider(): DispatcherProvider = DefaultDispatcherProvider()

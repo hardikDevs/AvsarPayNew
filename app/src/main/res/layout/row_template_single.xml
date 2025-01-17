@@ -6,17 +6,17 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/itemLin"
         android:layout_width="@dimen/_140sdp"
-        android:layout_height="@dimen/_100sdp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_8sdp"
         android:layout_marginEnd="@dimen/_8sdp"
-        android:background="@drawable/template_selection"
+
         android:backgroundTint="@color/white"
         android:orientation="vertical">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/item"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/_100sdp"
             android:orientation="vertical"
             android:padding="@dimen/_2sdp"
             android:outlineAmbientShadowColor="@color/black"
@@ -34,6 +34,23 @@
 
 
         </androidx.cardview.widget.CardView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Choose"/>
+        <TextView
+            android:gravity="end"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_724FDA"
+            android:text="Preview"/>
+
+    </LinearLayout>
 
     </LinearLayout>
 

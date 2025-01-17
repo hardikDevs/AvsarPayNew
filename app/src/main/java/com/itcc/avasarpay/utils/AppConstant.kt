@@ -31,7 +31,7 @@ object AppConstant {
     const val DATE_FORMAT = "yyyy-MM-dd HH:mm:ss"
 
     //---- Local Date Time---//
-   const val DATE_FORMAT_DD_MM_YY = "dd/MM/yyyy"
+   const val DATE_FORMAT_DD_MM_YY = "dd/MM/yyyy HH:mm:ss"
 
     /**
      * Times in long
@@ -93,5 +93,12 @@ object AppConstant {
     const val DELETE_CLICK ="Delete"
     const val LEAD_CONVERT_CLICK ="LeadConvertToQuote"
     const val QUOTE_CONVERT_CLICK ="QuoteConvertToQuote"
+
+    // Event Category
+    const val EVENT_CATEGORY_MARRIAGE = 1
+    const val EVENT_CATEGORY_BIRTHDAY = 2
+    const val EVENT_CATEGORY_ANNIVERSARY = 3
+    const val EVENT_CATEGORY_BABY_SHOWER = 4
+
 
 }
