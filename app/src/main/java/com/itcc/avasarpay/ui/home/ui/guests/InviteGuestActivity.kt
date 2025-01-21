@@ -10,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.itcc.avasarpay.base.BaseActivity
 import com.itcc.avasarpay.base.UiState
+import com.itcc.avasarpay.data.modal.GuestIteam
 import com.itcc.avasarpay.databinding.ActivityInviteGuestsBinding
 import com.itcc.avasarpay.ui.home.ui.dashboard.DashboardViewModel
 import com.itcc.avasarpay.ui.home.ui.event.contact.ImportContactActivity
@@ -23,7 +24,7 @@ class InviteGuestActivity : BaseActivity() {
 
     private lateinit var binding: ActivityInviteGuestsBinding
 
-    private val dashboardViewModel: DashboardViewModel by viewModels()
+    private val guestViewModel: GuestViewModel by viewModels()
 
     private var categoryId = "0"
 
@@ -32,10 +33,10 @@ class InviteGuestActivity : BaseActivity() {
 
         private const val EXTRAS_TITLE = "EXTRAS_TITLE"
 
-        fun getStartIntent(context: Context, country: String): Intent {
+        fun getStartIntent(context: Context, eventId: String): Intent {
             return Intent(context, InviteGuestActivity::class.java)
                 .apply {
-                    putExtra(EXTRAS_TITLE, country)
+                    putExtra(EXTRAS_TITLE, eventId)
                 }
         }
 
@@ -45,27 +46,40 @@ class InviteGuestActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityInviteGuestsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        enableEdgeToEdge()
         setupObserver()
+        val eventId = intent.getStringExtra(EXTRAS_TITLE)
+        guestViewModel.getEventGuestList(eventId.toString())
         binding.linAddGuest.setOnClickListener {
-            startActivity(AddGuestActivity.getStartIntent(this, ""))
+            startActivity(AddGuestActivity.getStartIntent(this, "3"))
         }
         binding.linImportContact.setOnClickListener {
-            startActivity(ImportContactActivity .getStartIntent(this, ""))
+            startActivity(ImportContactActivity.getStartIntent(this, "3"))
         }
     }
 
+
+    private fun setupGuestAdapter(list: List<GuestIteam>) {
+        val adapter = GuestAdapter(list)
+        val recyclerView = binding.contactList
+        recyclerView.adapter = adapter
+
+        adapter.itemClickListener = {
+            //  startActivity(JobDetailsActivity.getStartIntent(requireContext(), it.id!!))
+        }
+
+    }
 
     /**
      * Get Flow Event
      */
     private fun setupObserver() {
         lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                dashboardViewModel.uiState.collectLatest {
+            repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                guestViewModel.uiState.collectLatest {
                     when (it) {
                         is UiState.Success -> {
                             hideProgressbar()
+                            setupGuestAdapter(it.data.data)
                         }
 
                         is UiState.Loading -> {

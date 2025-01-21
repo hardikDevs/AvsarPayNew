@@ -1,6 +1,7 @@
 package com.itcc.avasarpay.data.api
 
 
+import com.itcc.avasarpay.data.modal.AllGuestModal
 import com.itcc.avasarpay.data.modal.CategoryListModal
 import com.itcc.avasarpay.data.modal.GuestModal
 import com.itcc.avasarpay.data.modal.LoginModal
@@ -29,8 +30,14 @@ interface NetworkService {
     @GET("categories")
     suspend fun getCategoryList(): Response<CategoryListModal>
 
-    @GET("contacts")
-    suspend fun getGuestList(): Response<GuestModal>
+    @GET("contact")
+    suspend fun getGuestList(): Response<AllGuestModal>
+
+    @POST("contact-event")
+    suspend fun getEventGuestList(@Body body: RequestBody): Response<GuestModal>
+
+    @POST("contact")
+    suspend fun createContacts(@Body body: RequestBody): Response<LoginModal>
 
     @Multipart
     @JvmSuppressWildcards

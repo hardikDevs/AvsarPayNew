@@ -48,6 +48,9 @@
             android:name=".ui.home.ui.event.contact.ImportContactActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.home.ui.event.TemplatePreviewActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.SplashScreen"
             android:exported="true">
             <intent-filter>

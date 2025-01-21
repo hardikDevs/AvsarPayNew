@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
-import com.itcc.avasarpay.data.modal.GuestItem
+import com.itcc.avasarpay.data.modal.GuestIteam
 import com.itcc.avasarpay.databinding.GuestSingleBinding
 import com.itcc.stonna.utils.ItemClickListener
 import java.util.Locale
@@ -18,17 +18,17 @@ import java.util.Random
  *Created By Hardik on 06-03-2024.
  */
 class AllGuestAdapter(
-    private val list: MutableList<GuestItem>
+    private val list: List<GuestIteam>
 ) : RecyclerView.Adapter<AllGuestAdapter.DataViewHolder>() , Filterable {
-    lateinit var itemClickListener: ItemClickListener<GuestItem>
-     var contactFilterList :MutableList<GuestItem>
+    lateinit var itemClickListener: ItemClickListener<GuestIteam>
+     var contactFilterList :List<GuestIteam>
 
     init {
         contactFilterList = list
     }
     class DataViewHolder(private val context: Context, private val binding: GuestSingleBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(data: GuestItem, itemClickListener: ItemClickListener<GuestItem>) {
+        fun bind(data: GuestIteam, itemClickListener: ItemClickListener<GuestIteam>) {
 
 
             binding.name.text = data.name
@@ -77,7 +77,7 @@ class AllGuestAdapter(
                 if (charSearch.isEmpty()) {
                     contactFilterList = list
                 } else {
-                    val resultList = ArrayList<GuestItem>()
+                    val resultList = ArrayList<GuestIteam>()
                     for (row in list) {
                         if (row.name?.lowercase(Locale.ROOT)
                                 ?.contains(charSearch.lowercase(Locale.ROOT))!!
@@ -94,7 +94,7 @@ class AllGuestAdapter(
 
             @Suppress("UNCHECKED_CAST")
             override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-                contactFilterList = results?.values as ArrayList<GuestItem>
+                contactFilterList = results?.values as ArrayList<GuestIteam>
                 notifyDataSetChanged()
             }
 

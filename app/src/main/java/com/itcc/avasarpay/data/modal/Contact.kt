@@ -3,6 +3,11 @@ package com.itcc.avasarpay.data.modal
 /**
  *Created By Sunny on 13-12-2024.
  */
+
+data class LocalContactModal(
+    val contactList : List<Contact>
+)
+
 data class Contact(
     val id: Int,
     val name: String,

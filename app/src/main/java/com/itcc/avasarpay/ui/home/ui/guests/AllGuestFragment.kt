@@ -11,7 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.itcc.avasarpay.base.BaseFragment
 import com.itcc.avasarpay.base.UiState
-import com.itcc.avasarpay.data.modal.GuestItem
+import com.itcc.avasarpay.data.modal.GuestIteam
 import com.itcc.avasarpay.databinding.FragmentGuestBinding
 import com.itcc.stonna.utils.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
@@ -56,7 +56,7 @@ class AllGuestFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        guestsViewModel.getGuestList()
+        guestsViewModel.getAllGuestList()
         setupObserver()
     }
 
@@ -88,7 +88,7 @@ class AllGuestFragment : BaseFragment() {
                     when (it) {
                         is UiState.Success -> {
                             hideProgressbar()
-                            setupGuestAdapter(it.data.item)
+                            setupGuestAdapter(it.data.data)
                         }
 
                         is UiState.Loading -> {
@@ -108,7 +108,7 @@ class AllGuestFragment : BaseFragment() {
         }
     }
 
-    private fun setupGuestAdapter(jobListItems: MutableList<GuestItem>) {
+    private fun setupGuestAdapter(jobListItems: List<GuestIteam>) {
          adapter = AllGuestAdapter(jobListItems)
         val recyclerView = binding.contactList
         recyclerView.adapter = adapter

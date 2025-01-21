@@ -39,7 +39,7 @@ class CreateEventSelectCategoryActivity : BaseActivity() {
     private val dashboardViewModel: DashboardViewModel by viewModels()
 
     private var categoryId = "0"
-    private val list: MutableList<CategoryItem>  = mutableListOf()
+    private val list: MutableList<CategoryItem> = mutableListOf()
     private lateinit var adapter: CategorySelectionAdapter
 
     companion object {
@@ -59,24 +59,28 @@ class CreateEventSelectCategoryActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityCreateEventStep1Binding.inflate(layoutInflater)
         setContentView(binding.root)
-        enableEdgeToEdge()
         setupObserver()
         dashboardViewModel.getCategoryList()
 
         binding.button.setOnClickListener {
             val selectedEvent = list.find { it.isSelected }
+            if (selectedEvent == null) {
+                Toast.makeText(this, "Please select an event", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
             Toast.makeText(this, "Selected: ${selectedEvent?.name}", Toast.LENGTH_SHORT).show()
-            startActivity(selectedEvent?.id?.let { it1 ->
-                CreateEventActivity.getStartIntent(this,
-                    it1
+            startActivity(
+                CreateEventActivity.getStartIntent(
+                    this,
+                    selectedEvent
                 )
-            })
+            )
         }
 
     }
 
     private fun setupCategoryAdapter(categoryItem: List<CategoryItem>) {
-       adapter = CategorySelectionAdapter(categoryItem) { data, selectedPosition ->
+        adapter = CategorySelectionAdapter(categoryItem) { data, selectedPosition ->
             updateSelection(selectedPosition)
         }
         val recyclerView = binding.rvCategory

@@ -27,7 +27,7 @@ class CategoryAdapter(
             Glide.with(context).load(data.featuredImage).placeholder(R.drawable.placeholder1)
                 .into(binding.imgDisable)
             itemView.setOnClickListener {
-               // itemClickListener(lead)
+                itemClickListener(data)
             }
         }
     }

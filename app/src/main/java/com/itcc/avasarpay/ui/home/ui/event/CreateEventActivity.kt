@@ -26,10 +26,13 @@ import com.itcc.avasarpay.R
 import com.itcc.avasarpay.base.BaseActivity
 import com.itcc.avasarpay.base.UiState
 import com.itcc.avasarpay.data.modal.CategoryItem
+import com.itcc.avasarpay.data.modal.GuestIteam
+import com.itcc.avasarpay.data.modal.TemplatesItem
 import com.itcc.avasarpay.databinding.ActivityCreateEventBinding
 import com.itcc.avasarpay.databinding.ActivityDashboardBinding
 import com.itcc.avasarpay.databinding.ActivityProfileBinding
 import com.itcc.avasarpay.ui.home.ui.dashboard.DashboardViewModel
+import com.itcc.avasarpay.ui.home.ui.guests.GuestAdapter
 import com.itcc.avasarpay.ui.home.ui.guests.InviteGuestActivity
 import com.itcc.avasarpay.utils.AppConstant
 import com.itcc.avasarpay.utils.FileHelper
@@ -41,6 +44,7 @@ import com.itcc.stonna.utils.getValue
 import com.itcc.stonna.utils.hide
 import com.itcc.stonna.utils.hideViews
 import com.itcc.stonna.utils.invisible
+import com.itcc.stonna.utils.serializable
 import com.itcc.stonna.utils.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -53,7 +57,13 @@ class CreateEventActivity : BaseActivity(), View.OnClickListener {
 
     private val eventViewModal: EventViewModal by viewModels()
 
-    private var categoryId = 0
+    private var categoryItem : CategoryItem?=null
+
+    private var categoryId=0
+
+    private val templetList: MutableList<TemplatesItem> = mutableListOf()
+
+    private lateinit var adapter: TempletAdapter
 
     private var eventTime =""
 
@@ -72,10 +82,10 @@ class CreateEventActivity : BaseActivity(), View.OnClickListener {
 
         private const val EXTRAS_ID = "EXTRAS_ID"
 
-        fun getStartIntent(context: Context, categoryId: Int): Intent {
+        fun getStartIntent(context: Context, item: CategoryItem): Intent {
             return Intent(context, CreateEventActivity::class.java)
                 .apply {
-                    putExtra(EXTRAS_ID, categoryId)
+                    putExtra(EXTRAS_ID, item)
                 }
         }
 
@@ -192,19 +202,22 @@ class CreateEventActivity : BaseActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         binding = ActivityCreateEventBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        enableEdgeToEdge()
         setupObserver()
         getIntentData()
         addClickListener()
 
-       /* binding.btnCreateEvent.setOnClickListener {
-            startActivity(InviteGuestActivity.getStartIntent(this, ""))
-        }*/
+        binding.btnCreateEvent.setOnClickListener {
+            startActivity(TemplatePreviewActivity.getStartIntent(this, "https://devsinindia.com/","3" ))
+        }
 
     }
 
     private fun getIntentData() {
-        categoryId = intent.getIntExtra(EXTRAS_ID, 0)
+        categoryItem = intent.serializable(EXTRAS_ID)
+        categoryItem?.templates?.let { templetList.addAll(it) }
+        setupTempletAdapter(templetList)
+
+        categoryId = categoryItem?.id!!
         when (categoryId) {
             AppConstant.EVENT_CATEGORY_MARRIAGE -> {
                 showMarriageUI()
@@ -224,6 +237,23 @@ class CreateEventActivity : BaseActivity(), View.OnClickListener {
         }
     }
 
+    private fun setupTempletAdapter(list: List<TemplatesItem>) {
+         adapter = TempletAdapter(list)
+        { data, selectedPosition ->
+            updateSelection(selectedPosition)
+        }
+        val recyclerView = binding.rvTemplet
+        recyclerView.adapter = adapter
+
+
+
+    }
+    private fun updateSelection(selectedPosition: Int) {
+        templetList.forEachIndexed { index, event ->
+            event.isSelected = index == selectedPosition
+        }
+        adapter.notifyDataSetChanged()
+    }
     /**
      * Add Multiple Click Listener
      */
@@ -265,7 +295,7 @@ class CreateEventActivity : BaseActivity(), View.OnClickListener {
             binding.couple2UploadBtn -> couplePhoto2Launcher.launch( PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
             binding.couple3UploadBtn -> couplePhoto3Launcher.launch( PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
             binding.edtEventDate -> eventDateSelection()
-            binding.btnCreateEvent -> createEvent()
+           // binding.btnCreateEvent -> createEvent()
 
 
         }
@@ -307,13 +337,15 @@ class CreateEventActivity : BaseActivity(), View.OnClickListener {
 
         val date = Util.convertLocalDateToServerDate(binding.edtEventDate.getValue())
 
+        val selectedTemplet = templetList.find { it.isSelected }
+
 
 
         eventViewModal.createEvent(
             title = title,
             category_id = categoryId.toString(),
             venue = venue,
-            templete_id = "1",
+            templete_id = selectedTemplet?.id.toString(),
             welcome_description = description,
             event_date = date,
             groom_name = groomName,

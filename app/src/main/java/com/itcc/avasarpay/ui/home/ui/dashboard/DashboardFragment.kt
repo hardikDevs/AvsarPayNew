@@ -14,6 +14,7 @@ import com.itcc.avasarpay.data.modal.CategoryItem
 import com.itcc.avasarpay.databinding.FragmentDashboardBinding
 import com.itcc.avasarpay.ui.home.ui.event.CreateEventActivity
 import com.itcc.avasarpay.ui.home.ui.event.CreateEventSelectCategoryActivity
+import com.itcc.stonna.utils.hide
 import com.itcc.stonna.utils.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -58,6 +59,9 @@ class DashboardFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         dashboardViewModel.getCategoryList()
         setupObserver()
+
+        binding.include.imgBack.hide()
+
         binding.createEvent.setOnClickListener {
             startActivity(CreateEventSelectCategoryActivity.getStartIntent(requireContext(), ""))
         }
@@ -100,7 +104,7 @@ class DashboardFragment : BaseFragment() {
         recyclerView.adapter = adapter
 
         adapter.itemClickListener = {
-            //  startActivity(JobDetailsActivity.getStartIntent(requireContext(), it.id!!))
+              startActivity(CreateEventActivity.getStartIntent(requireContext(),it))
         }
     }
 
